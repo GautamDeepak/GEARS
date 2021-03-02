@@ -42,7 +42,7 @@ The first step is to get a cloud free image with which to work.  Do this by impo
 Building on from last week, we can use the point drawing tool (teardrop icon) from the geometry tools and draw a single point in the region of interest - let's use the town of Cairns for this example.  Then 'Exit' from the drawing tools.  Note that a new variable is created in the imports section, containing the single point, imported as a Geometry.  Change the name of this import to "roi" - short for region of interest.
 
 
-![Figure 1. Navigating to Cairns](l4_cairns.png)
+![Figure 1. Navigating to Cairns](Prac4/l4_cairns.png)
 
 Next we can run the script below to extract our desired image from the Landsat 8 collection and add it to the map view as a true-colour composite:
 
@@ -55,11 +55,11 @@ var image = ee.Image(ee.ImageCollection('LANDSAT/LC08/C01/T1_SR')
 Map.addLayer(image, {bands: ['B4', 'B3', 'B2'],min:0, max: 3000}, 'True colour image');
 ```
 
-![Figure 2. Adding image to map view](l4_layers.png)
+![Figure 2. Adding image to map view](Prac4/l4_layers.png)
 
 Have a look around the scene and familiarise yourself with the landscape. You'll notice the image is quite dark image - we can adjust the brightness/contrast using the settings wheels for the layer we created in the Layers tab. Slide the Gamma adjuster slightly to the right (from 1.0 to 1.4) to increase the brightness of the scene.
 
-![Figure 3. Brightness adjustment](l4_gamma.png)
+![Figure 3. Brightness adjustment](Prac4/l4_gamma.png)
 
 ## Gathering training data
 1. The first step in classifying our image is to collect some training data to teach the classifier.  We want to collect representative samples of reflectance spectra for each landcover class of interest.
@@ -68,17 +68,17 @@ Have a look around the scene and familiarise yourself with the landscape. You'll
 4. Let the first new layer represent 'urban.'  Locate points in the new layer in urban or built up areas (buildings, roads, parking lots, etc.) and click to collect them 9adding points in the geometry layer.
 5. Collect 25 representative points and rename the 'geometry' as 'urban'.
 
-![Figure 4. Create and collect the urban class](screenshots/l4_urban.png)
+![Figure 4. Create and collect the urban class](Prac4/l4_urban.png)
 
 
 5. Next you can configure the urban geometry import (cog-wheel, top of the script in imports section) as follows.  Click the cog-wheel icon to configure it, change 'Import as'  from 'Geometry' to 'FeatureCollection'.  Use 'Add property' landcover and set its value to 0.  (Subsequent classes will be 1, 2, 3 etc.)  when finished, click 'OK'.
 
-![Figure 5. The geometry dialogue box](screenshots/l4_cog.png)
+![Figure 5. The geometry dialogue box](Prac4/l4_cog.png)
 
 
 6. Repeat step 5 for each land cover class in that you wish to include in your classification, ensuring that training points overlap the image.   Add 'water', 'forest', and 'agriculture' next - collecting 25 points for each. Use the cog-wheel to configure the geometries, changing the type to FeatureCollection and setting the property name to landcover with values of 1, 2 and 3 for the different classes.
 
-![Figure 6. Adding classes](screenshots/l4_classes.png)
+![Figure 6. Adding classes](Prac4/l4_classes.png)
 
 7. Now we have four classes defined (urban, water, forest, agriculture), but before we can use them to collect training data we need to merge them into a single collection, called a FeatureCollection. Run the following line to merge the geometries into a single FeatureCollection:
 
@@ -91,7 +91,7 @@ var classNames = urban.merge(water).merge(forest).merge(agriculture);
 ```javascript
 print(classNames)
 ```
-![Figure 7. Printing classes](screenshots/l4_printclass.png)
+![Figure 7. Printing classes](Prac4/l4_printclass.png)
 
 
 ## Create the training data
@@ -110,7 +110,7 @@ print(training);
 
 After running the script the training data will be printed to the console. You will notice that the 'properties' information has now changed, and in addition to the landcover class, for each point there is now a corresponding reflectance value for each band of the image.
 
-![Figure 8. Printing training data](screenshots/l4_training.png)
+![Figure 8. Printing training data](Prac4/l4_training.png)
 
 
 ## Train the classifier and run the classification
@@ -145,7 +145,7 @@ Map.addLayer(classified,
 
 
 
-![Figure 9. Classified map](screenshots/l4_classified.png)
+![Figure 9. Classified map](Prac4/l4_classified.png)
 
 
 ## Examine your results
