@@ -84,7 +84,7 @@ Map.addLayer(classified,
 'classification');
 ```
 
-![Figure 1. Classified map](screenshots/l4_classified.png)
+![Figure 1. Classified map](Prac5/l4_classified.png)
 
 -----
 ## Improving the Classification
