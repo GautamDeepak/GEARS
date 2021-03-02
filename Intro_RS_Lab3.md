@@ -35,27 +35,27 @@ The objective of this lab is to gain understanding of a range of spectral indice
 1. Just above the Coding panel is the search bar. Search for ‘Darwin’ in this GEE search bar, and click the result to pan and zoom the map to Darwin (Figure 1).
 
 
-![Figure 1. Navigating to area of interest in Google Earth Engine](search.png)
+![Figure 1. Navigating to area of interest in Google Earth Engine](Prac3/search.png)
 
 
 2. Use the geometry tools to make a point on Casuarina campus of Charles Darwin University (located in the suburb of Brinkin, north of Rapid Creek). Once you create the geometry point, you will see it added to your Coding panel as a variable (var) under the Imports heading.
 
 
-![Figure 2. Creating a geometry point](geometry.png)
+![Figure 2. Creating a geometry point](Prac3/geometry.png)
 
 3. Rename the resulting point ‘campus’ by clicking the import name (which is called ‘geometry’ by default).
 
-![Figure 3. Renaming a geometry point](campus.png)
+![Figure 3. Renaming a geometry point](Prac3/campus.png)
 
 
 4. Search for ‘Sentinel-2’ in the search bar. In the results section you will see ‘Sentinel-2: Multi-spectral Instrument (MSI), Level-1C’ - click on it and then click the ‘Import’ button.
 
-![Figure 4. Importing Sentinel-2 data](sent2.png)
+![Figure 4. Importing Sentinel-2 data](Prac3/sent2.png)
 
 
 5. After clicking import, Sentinel-2 will be added to our Imports in the Coding panel as a variable. It will be listed below our campus geometry point with the default name "imageCollection". Let's rename this to “sent2” by clicking on imageCollection and typing "sent2".
 
-![Figure 5. Importing Sentinel-2 data](sent2_2.png)
+![Figure 5. Importing Sentinel-2 data](Prac3/sent2_2.png)
 
 6. It is important to understand that we have now added access to the full Sentinel-2 image collection (i.e. every image that has been collected to date) to our script. For this exercise we don't want to load all these images - we want a single cloud free image over Charles Darwin University. As such, we can now filter the image collection with a few criteria, such as time of acquisition, spatial location and cloud cover.
 
@@ -87,7 +87,7 @@ The objective of this lab is to gain understanding of a range of spectral indice
 
 8. You need to copy the entire piece of code above and paste it in the “New script” box of the GEE code editor. Then click the "Run" button and watch Google do its magic...... This piece of code will search the full Sentinel-2 archive, find images that are located over Darwin, sort them according to percentage cloud cover, and then return the most recent cloud free image for us. Information relating to this image will be printed to the Console, where it is listed as "A Sentinel-2 scene" with some details about that scene(COPERNICUS/S2/20160629T014038\_20160629T062926\_T52LFM (16 bands)). We know from the scene name that is was collected on the 29th June 2016.
 
-![Figure 6. Filtering the collection](run.png)
+![Figure 6. Filtering the collection](Prac3/run.png)
 ---------
 ## Adding images to the map view
 9. Now in order to actually have a look at this image, we need to add it to our mapping environment. Before doing that however, lets define how we want to display the image. Let’s start with a true colour representation by pasting the following lines below the ones you’ve already added, and click "Run".
@@ -106,7 +106,7 @@ The objective of this lab is to gain understanding of a range of spectral indice
 
 10. This code specifies that for a true colour image, bands 4,3 and 2 should be used in the RGB composite. After the image appears in the map, you can zoom in and explore Darwin. We see great detail in the Sentinel-2 image, which is at 10m resolution for the selected bands. The (+) and (-) symbols in the upper left corner of the map can be used for zooming in and out (also possible with the mouse scroll wheel/trackpad). A left click with the mouse brings up the "hand" for panning to move around the image. Moving your mouse over the "Layers" button in the top right-hand corner of the map panel shows you the available layers, and lets you adjust the opacity of different layers.
 
-![Figure 7. Adding a true colour image to the map](truecolour.png)
+![Figure 7. Adding a true colour image to the map](Prac3/truecolour.png)
 
 11. In order to find out more information at specific locations, we can use the Inspector tool which is located in the Console Panel - left hand tab. Click on the Inspector tab and then click on the image in the map view. Wherever you click on the image, the band values at that point will be displayed in the Inspector window. Click over some different patch types (sports fields, mangroves, ocean, beach, houses) to see how the spectral profile changes.
 
@@ -125,7 +125,7 @@ The objective of this lab is to gain understanding of a range of spectral indice
     Map.addLayer(image, falseColour, "false-color composite");
 ```
 
-![Figure 9. Adding a false colour composite to the map](false.png)
+![Figure 9. Adding a false colour composite to the map](Prac3/false.png)
 
 13. False-colour composites place the near infra-red band in the red channel, and we see a strong response to the chlorophyll content in green leaves. Vegetation that appears dark green in true colour, appearing bright red in the false-colour. Note the variations in red that can be seen in the vegetation bordering Rapid Creek. You will also see that "false-colour composite" has been added to the Layers tab in the map view.
 
@@ -153,7 +153,7 @@ Paste the following lines below the ones you’ve already added, and click "Run"
     Map.addLayer(NDVI, {min: 0, max: 1}, "NDVI");
 ```
 
-![Figure 10. Retrieving NDVI from Sentinel-2](ndvi.png)
+![Figure 10. Retrieving NDVI from Sentinel-2](Prac3/ndvi.png)
 
 15. Explore different parts of the image and see how NDVI values vary with different substrate types.
 
