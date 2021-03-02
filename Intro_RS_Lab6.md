@@ -58,13 +58,13 @@ Map.addLayer(image, {bands: ['B4', 'B3', 'B2'],min:0, max: 3000}, 'True colour i
 
 First we will specify which bands to use, and create new polygons Using the (rectangle tool) for three classes (Water, Forest, City) we want to explore.
 
-![Figure 1. Make rectangle polygons](screenshots/l5_poly.png)
+![Figure 1. Make rectangle polygons](Prac6/l5_poly.png)
 
 
 
 Change the geometry type to Feature and and define a 'label' in the properties tab.
 
-![Figure 2. Defining Feature and Labels](screenshots/l5_feature.png)
+![Figure 2. Defining Feature and Labels](Prac6/l5_feature.png)
 
 ```JavaScript
 //Choose bands to include and define feature collection to use
@@ -83,7 +83,7 @@ var Chart1 = ui.Chart.image.regions(
 print(Chart1);
 ```
 
-![Figure 3. Chart 1](screenshots/ee-chart2.png)
+![Figure 3. Chart 1](Prac6/ee-chart2.png)
 
 We can improve the readability of our chart by specifying some display options.
 
@@ -118,7 +118,7 @@ var Chart2 = ui.Chart.image.regions(
 // Display the chart.
 print(Chart2);
 ```
-![Figure 4. Chart 2](screenshots/ee-chart11.png)
+![Figure 4. Chart 2](Prac6/ee-chart11.png)
 
 ## Exercises
 
