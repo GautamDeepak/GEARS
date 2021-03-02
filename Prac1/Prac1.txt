@@ -1,0 +1,21 @@
+// Print the data details
+print(srtm);
+
+// visualisation parameters
+var VizParams ={
+bands: ['elevation'],
+min: 150,
+max: 255,
+palette: ['blue', 'yellow', 'red']
+};
+
+// Add the SRTM data to the map interface panel
+Map.addLayer(srtm, VizParams,'Elevation above sea level',1,1);
+
+// hillshade and addlayer
+var hillshade = ee.Terrain.hillshade(srtm);
+Map.addLayer(hillshade,{min:150,max:255},'Hillshade',1,0.3);
+
+// compute slope and add to the layer
+var slope = ee.Terrain.slope(srtm);
+Map.addLayer(slope, {min: 0, max: 20}, 'Slope',1,0.3);
