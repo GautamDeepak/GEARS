@@ -45,14 +45,14 @@ The objective of this lab is to deepen your understanding of Synthetic Aperture 
 
 1. Open up Earth Engine and type "Sentinel-1" into the search bar. Click on the Sentinel-1 result and read through the background information on the satellite and image properties.
 
-![Figure 1. Search for Sentinel-1 data](screenshots/l8_sent1.png)
+![Figure 1. Search for Sentinel-1 data](Prac8/l8_sent1.png)
 
-![Figure 2. Sentinel-1 information](screenshots/l8_sentinfo.png)
+![Figure 2. Sentinel-1 information](Prac8/l8_sentinfo.png)
 
 2. Sentinel-1 has different polarisation options - remember that "VV" means vertically polarised signal transmitted out and vertically polarised signal received, whereas VH refers to vertically polarised signal transmitted out, and horizontally polarised signal is received.
 3. First up we need to filter the Sentinel-1 image collection (COPERNICUS/S1_GRD), using the script below. Be sure to use the geometry tool to create a point geometry over your region of interest (we will use the Tully region of north Queensland, Australia, as an example) and rename it "roi".
 
-![Figure 3. Tully](screenshots/l8_tully.png)
+![Figure 3. Tully](Prac8/l8_tully.png)
 
 ```JavaScript
 // Filter the collection for the VV product from the descending track
@@ -76,7 +76,7 @@ print(collectionVH);
 
 4. Navigate to the console and have a look at the information you printed. Using the drop down arrows you can assess how many images are present in teh collection for your region of interest.
 
-![Figure 4. Console](screenshots/l8_console.png)
+![Figure 4. Console](Prac8/l8_console.png)
 
 
 5. Centre the map view over your region of interest
@@ -86,7 +86,7 @@ print(collectionVH);
 Map.centerObject(roi, 13);
 ```
 
-![Figure 5. Center view](screenshots/l8_centre.png)
+![Figure 5. Center view](Prac8/l8_centre.png)
 
 
 6. Use the median reducer to obtain the median pixel value across the all years for each pixel.
@@ -101,7 +101,7 @@ var VV = collectionVV.median();
 Map.addLayer(VV, {min: -14, max: -7}, 'VV');
 ```
 
-![Figure 6. Mapping VV](screenshots/l8_VV.png)
+![Figure 6. Mapping VV](Prac8/l8_VV.png)
 
 
 8. Explore the image and examine which landscape features have high backscatter intensity (white), and which have low intensity (black).
@@ -112,7 +112,7 @@ var VH = collectionVH.median();
 Map.addLayer(VH, {min: -20, max: -7}, 'VH');
 ```
 
-![Figure 7. Mapping VH](screenshots/l8_VH.png)
+![Figure 7. Mapping VH](Prac8/l8_VH.png)
 
 10. Explore how VV and VH differ in their sensitivity to different land surfaces
 
@@ -128,7 +128,7 @@ var VV3 = ee.Image(collectionVV.filterDate('2018-09-01', '2018-12-31').median())
 Map.addLayer(VV1.addBands(VV2).addBands(VV3), {min: -12, max: -7}, 'Season composite');
 ```
 
-![Figure 9. Temporal RGB composite](screenshots/l8_rgb.png)
+![Figure 9. Temporal RGB composite](Prac8/l8_rgb.png)
 
 12. Now try the same for VH
 13. Experiment with mixing VV and VH in a RGB composite
