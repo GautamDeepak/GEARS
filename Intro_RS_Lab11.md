@@ -1,4 +1,4 @@
-![GEARS Lab](Prac11/GEARS_logo.jpg)
+![GEARS Lab](Prac11/Logo3.jpg)
 GEARS - Geospatial Ecology and Remote Sensing lab - https://www.gears-lab.com
 
 # Introduction to Remote Sensing of the Environment
