@@ -200,4 +200,4 @@ Map.addLayer(hillshade, {min: 150, max:255}, 'Hillshade');
 var slope = ee.Terrain.slope(srtm);
 Map.addLayer(slope, {min: 0, max: 20}, 'Slope');
 ```
-### end
+### The end
