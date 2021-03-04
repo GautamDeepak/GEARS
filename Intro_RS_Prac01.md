@@ -103,25 +103,25 @@ The displayed map will look pretty flat grey, because the default visualization 
 
 ![Figure 8. Map SRTM](Prac1/flatgrey.png)
 
-7. Select the Inspector tab. Then click on a several points on the map to get a feel for the elevation range in this area.
+9. Select the Inspector tab. Then click on a several points on the map to get a feel for the elevation range in this area.
 
 ![Figure 8. Inspect SRTM](Prac1/inspector.png)
 
-8. Now you can set some more appropriate visualization parameters by adjusting the code as follows (units of the min and max values are in meters above sea level):
+10. Now you can set some more appropriate visualization parameters by adjusting the code as follows (units of the min and max values are in meters above sea level):
 
 ```JavaScript
 Map.addLayer(theSRTM, {min: 0, max: 300});
 ```
 ![Figure 9. Visualise SRTM](Prac1/minmax.png)
 
-9. You will now be able to see variation in elevation range with low values in black and highest points in white. Layers added to the map will have default names like "Layer 1", "Layer 2", etc. To improve the readability, we can give each layer a human­-readable name, by adding a title with the syntax in the following code. Don't forget to click run.
+11. You will now be able to see variation in elevation range with low values in black and highest points in white. Layers added to the map will have default names like "Layer 1", "Layer 2", etc. To improve the readability, we can give each layer a human­-readable name, by adding a title with the syntax in the following code. Don't forget to click run.
 
 ```JavaScript
 Map.addLayer(theSRTM, {min: 0, max: 300}, 'Elevation above sea level');
 ```
 ![Figure 10. Rename title](Prac1/layername.png)
 
-10. Now the code has started to look a little bit messy. Imagine you looking at this code in a year time. Would you still be able to tell which line is doing what task? Hence, it is a good idea to always put comment to your code reminding you of what you did and why. We add comments with two forward slashes // :
+12. Now the code has started to look a little bit messy. Imagine you looking at this code in a year time. Would you still be able to tell which line is doing what task? Hence, it is a good idea to always put comment to your code reminding you of what you did and why. We add comments with two forward slashes // :
 
 ```Javascript
 // Print data details to console
@@ -138,11 +138,11 @@ Map.addLayer(theSRTM, {min: 0, max: 300}, 'Elevation above sea level');
 ```
 ![Figure 11. Comment script](Prac1/commenting.png)
 
-11. Also remember to save the code by clicking "Save". It will be saved in your private repository, and will be accessible the next time you log in to Earth Engine.
+13. Also remember to save the code by clicking "Save". It will be saved in your private repository, and will be accessible the next time you log in to Earth Engine.
 
 ![Figure 12. Comment script](Prac1/save.png)
 
-12. If you would like to experiment with different colour combinations, you can play with colour palettes as per the example below:
+14. If you would like to experiment with different colour combinations, you can play with colour palettes as per the example below:
 
 ```Javascript
 // Adding color scale to the elevation data
@@ -151,7 +151,7 @@ Map.addLayer(theSRTM, {min: 0, max: 300, palette: ['blue', 'yellow', 'red']}, 'E
 
 ![Figure 13. Colour scale elevation](Prac1/colorelevation.png)
 
-13. For better visualisation we can create a hillshade view of the elevation data. Remember you can use the Layer transparency options to create draped images for colourised hillshades.
+15. For better visualisation we can create a hillshade view of the elevation data. Remember you can use the Layer transparency options to create draped images for colourised hillshades.
 
 ```JavaScript
 // Create hillshade and map it
@@ -162,7 +162,7 @@ Map.addLayer(hillshade, {min: 150, max:255}, 'Hillshade');
 ![Figure 14. Hillshade view](Prac1/hillsrtm.png)
 
 
-14. Slope works in a similar way:
+16. Slope works in a similar way:
 
 ```javascript
 // Create terrain slope and map it
@@ -172,9 +172,9 @@ Map.addLayer(slope, {min: 0, max: 20}, 'Slope');
 
 ![Figure 15. Slope map](Prac1/slope.png)
 
-15. Dont forget to save your script before closing the Chrome tab.
+17. Dont forget to save your script before closing the Chrome tab.
 
-### Complete script
+## Complete script
 ```JavaScript
 // The SRTM dataset
 var theSRTM = ee.Image("USGS/SRTMGL1_003");
