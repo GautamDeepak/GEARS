@@ -74,7 +74,7 @@ and make them more accessible, so we appreciate suggestions on which new dataset
 
 ![Figure 4. View elevation datasource and import](Prac1/viewinfo.png)
 
-<mark>Question: How many bands does this data have and whats the spatial resolution?<mark>
+Question: How many bands does this data have and whats the spatial resolution?
 
 5. Rename the default variable name "image" to anything you like. Here we will rename it to "theSRTM".
 
