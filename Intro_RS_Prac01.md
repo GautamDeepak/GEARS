@@ -199,7 +199,7 @@ Map.addLayer(slope, {min: 0, max: 20}, 'Slope');
 
 I hope you found that useful. A recorded video of this tutorial can be found on my YouTube Channel's [Introduction to Remote Sensing of the Environment Playlist](https://www.youtube.com/playlist?list=PLf6lu3bePWHDi3-lrSqiyInMGQXM34TSV).
 
-#### Kind regards, Shaun R Levick and Deepak Gautam
+#### Kind regards, Shaun R Levick (edit Deepak Gautam)
 ------
 
 
