@@ -173,3 +173,31 @@ I hope you found that useful. A recorded video of this tutorial can be found on 
 
 #### Kind regards, Shaun R Levick and Deepak Gautam
 ------
+
+### Complete script
+```JavaScript
+var srtm = ee.Image("USGS/SRTMGL1_003");
+// Print data details to console
+print(srtm);
+
+// Add the SRTM data to the interactive map
+Map.addLayer(srtm);
+
+// Add the data again, but with rescrited value ranges for better visualisation
+Map.addLayer(srtm, {min: 0, max: 300});
+
+// Add the data again, with value ranges, and a useful title for teh Layer tab
+Map.addLayer(srtm, {min: 0, max: 300}, 'Elevation above sea level');
+
+//Colored elevation
+Map.addLayer(srtm, {min: 0, max: 300, palette: ['blue', 'yellow', 'red']}, 'Elevation above sea level');
+
+//Hillshade
+var hillshade = ee.Terrain.hillshade(srtm);
+Map.addLayer(hillshade, {min: 150, max:255}, 'Hillshade');
+
+//Slope
+var slope = ee.Terrain.slope(srtm);
+Map.addLayer(slope, {min: 0, max: 20}, 'Slope');
+```
+### end
