@@ -23,7 +23,7 @@ Google Earth Engine uses the JavaScript programming language. We will cover the 
 ### Objective
 ---------
 
-The objective of this lab is to give you an introduction to the Google Earth Engine processing environment. By the end of this exercise you will be able to search, find and visualise a broad range of remotely sensed datasets. We will start with single-band imagery - elevation data from the SRTM mission.
+The objective of this lab is to give you an introduction to the Google Earth Engine processing environment. By the end of this exercise you will be able to search, find and visualise a broad range of remotely sensed datasets. We will start with single-band imagery - elevation data from the [SRTM mission](https://www2.jpl.nasa.gov/srtm/).
 
 ## 1. The Earth Engine code editor
 
@@ -62,7 +62,7 @@ and make them more accessible, so we appreciate suggestions on which new dataset
 ![Figure 2. Zoom to Darwin](Prac1/navigate2darwin.png)
 
 
-2. Clear the script workspace by selecting "Clear script" from the Reset button dropdown menu.
+2. If the script area is not clear, clear the script workspace by selecting "Clear script" from the Reset button dropdown menu.
 
 ![Figure 3. Clear script](Prac1/clearscript.png)
 
