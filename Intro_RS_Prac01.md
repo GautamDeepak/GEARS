@@ -74,76 +74,77 @@ and make them more accessible, so we appreciate suggestions on which new dataset
 
 ![Figure 4. View elevation datasource and import](Prac1/viewinfo.png)
 
-5. Rename the default variable name "image" to anything you like. Here we will rename it to "theSrtm".
+5. Rename the default variable name "image" to anything you like. Here we will rename it to "theSRTM".
 
 ![Figure 5. Rename image](Prac1/rename.png)
 
-6. Add the image object to the console by coping the script below into the code editor, and click "run" :
+6. Print/add the image object to the console by coping the script below into the code editor, and click "run" :
 
 ```JavaScript
-print(srtm);
+print(theSRTM);
 ```
 ![Figure 6. Print SRTM](Prac1/printrun.png)
 
 
-7. Browse through the information that was printed to the console. Open the “bands” section to show the one band named “elevation”. Note that all this same information is automatically available for all variables in the Imports section.
+7. Browse through the information that was printed to the console window. Open the “bands” section to show the one band named “elevation”. Note that all this same information is automatically available for all variables in the Imports section.
 
 ![Figure 7. SRTM in console](Prac1/bandssrtm.png)
 
 
-8. Use the Map.addLayer() method to add the image to the interactive map. We will start simple, without using any of the optional parameters.
+8. Use the Map.addLayer() method to add/display the image to the interactive map. We will start simple, without using any of the optional parameters. After adding the script, hit "run" again. Everytime you make changes to your script, you will neeed to run the script again.
 
 ```JavaScript
-Map.addLayer(srtm);
+Map.addLayer(theSRTM);
 ```
 
-The displayed map will look pretty flat grey, because the default visualization parameters map the full 16­bit range of the data onto the black–white range, but the elevation range is much smaller than that in any particular location. We’ll fix it in a moment.
+The displayed map will look pretty flat grey, because the default visualization parameters maps the full 16­bit range of the data onto the black–white range, but the elevation range is much smaller than that in any particular location. We’ll fix it in a moment.
 
 ![Figure 8. Map SRTM](Prac1/flatgrey.png)
 
-7. Select the Inspector tab. Then click on a few points on the map to get a feel for the elevation range in this area.
+7. Select the Inspector tab. Then click on a several points on the map to get a feel for the elevation range in this area.
 
 ![Figure 8. Inspect SRTM](Prac1/inspector.png)
 
-8. Now you can set some more appropriate visualization parameters by adjusting the code as follows (units are in meters above sea level):
+8. Now you can set some more appropriate visualization parameters by adjusting the code as follows (units of the min and max values are in meters above sea level):
 
 ```JavaScript
-Map.addLayer(srtm, {min: 0, max: 300});
+Map.addLayer(theSRTM, {min: 0, max: 300});
 ```
 ![Figure 9. Visualise SRTM](Prac1/minmax.png)
 
 9. You will now be able to see variation in elevation range with low values in black and highest points in white. Layers added to the map will have default names like "Layer 1", "Layer 2", etc. To improve the readability, we can give each layer a human­-readable name, by adding a title with the syntax in the following code. Don't forget to click run.
 
 ```JavaScript
-Map.addLayer(srtm, {min: 0, max: 300}, 'Elevation above sea level');
+Map.addLayer(theSRTM, {min: 0, max: 300}, 'Elevation above sea level');
 ```
 ![Figure 10. Rename title](Prac1/layername.png)
 
-10. Now the last step for today is to save your code, however before doing that it is good practice to add a some comment lines to your code reminding you of what you did and why. We add these with two forward slashes // :
+10. Now the code has started to look a little bit messy. Imagine you looking at this code in a year time. Would you still be able to tell which line is doing what task? Hence, it is a good idea to always put comment to your code reminding you of what you did and why. We add comments with two forward slashes // :
 
 ```Javascript
 // Print data details to console
-print(srtm);
+print(theSRTM);
 
 // Add the SRTM data to the interactive map
-Map.addLayer(srtm)
+Map.addLayer(theSRTM);
 
 // Add the data again, but with rescrited value ranges for better visualisation
-Map.addLayer(srtm, {min: 0, max: 300})
+Map.addLayer(theSRTM, {min: 0, max: 300});
 
 // Add the data again, with value ranges, and a useful title for teh Layer tab
-Map.addLayer(srtm, {min: 0, max: 300}, 'Elevation above sea level');
+Map.addLayer(theSRTM, {min: 0, max: 300}, 'Elevation above sea level');
 ```
 ![Figure 11. Comment script](Prac1/commenting.png)
 
-11. The next step is then to save you script by clicking "Save". It will be saved in your private repository, and will be accessible the next time you log in to Earth Engine.
+11. Also remember to save the code by clicking "Save". It will be saved in your private repository, and will be accessible the next time you log in to Earth Engine.
 
 ![Figure 12. Comment script](Prac1/save.png)
 
 12. If you would like to experiment with different colour combinations, you can play with colour palettes as per the example below:
 
 ```Javascript
-Map.addLayer(srtm, {min: 0, max: 300, palette: ['blue', 'yellow', 'red']}, 'Elevation above sea level');
+// Adding color scale to the elevation data
+Map.addLayer(theSRTM, {min: 0, max: 300, palette: ['blue', 'yellow', 'red']}, 'Elevation above sea level');
 ```
 
 ![Figure 13. Colour scale elevation](Prac1/colorelevation.png)
@@ -151,7 +152,8 @@ Map.addLayer(srtm, {min: 0, max: 300, palette: ['blue', 'yellow', 'red']}, 'Elev
 13. For better visualisation we can create a hillshade view of the elevation data. Remember you can use the Layer transparency options to create draped images for colourised hillshades.
 
 ```JavaScript
-var hillshade = ee.Terrain.hillshade(srtm);
+// Create hillshade and map it
+var hillshade = ee.Terrain.hillshade(theSRTM);
 Map.addLayer(hillshade, {min: 150, max:255}, 'Hillshade');
 ```
 
@@ -161,36 +163,41 @@ Map.addLayer(hillshade, {min: 150, max:255}, 'Hillshade');
 14. Slope works in a similar way:
 
 ```javascript
-var slope = ee.Terrain.slope(srtm);
-Map.addLayer(slope, {min: 0, max: 20}, 'Slope')
+// Create terrain slope and map it
+var slope = ee.Terrain.slope(theSRTM);
+Map.addLayer(slope, {min: 0, max: 20}, 'Slope');
 ```
 
 ![Figure 15. Slope map](Prac1/slope.png)
 
+15. Dont forget to save your script before closing the Chrome tab.
+
 ### Complete script
 ```JavaScript
-var srtm = ee.Image("USGS/SRTMGL1_003");
+// The SRTM dataset
+var theSRTM = ee.Image("USGS/SRTMGL1_003");
+
 // Print data details to console
-print(srtm);
+print(theSRTM);
 
 // Add the SRTM data to the interactive map
-Map.addLayer(srtm);
+Map.addLayer(theSRTM);
 
 // Add the data again, but with rescrited value ranges for better visualisation
-Map.addLayer(srtm, {min: 0, max: 300});
+Map.addLayer(theSRTM, {min: 0, max: 300});
 
 // Add the data again, with value ranges, and a useful title for teh Layer tab
-Map.addLayer(srtm, {min: 0, max: 300}, 'Elevation above sea level');
+Map.addLayer(theSRTM, {min: 0, max: 300}, 'Elevation above sea level');
 
-//Colored elevation
-Map.addLayer(srtm, {min: 0, max: 300, palette: ['blue', 'yellow', 'red']}, 'Elevation above sea level');
+// Adding color scale to the elevation data
+Map.addLayer(theSRTM, {min: 0, max: 300, palette: ['blue', 'yellow', 'red']}, 'Elevation above sea level');
 
-//Hillshade
-var hillshade = ee.Terrain.hillshade(srtm);
+// Create hillshade and map it
+var hillshade = ee.Terrain.hillshade(theSRTM);
 Map.addLayer(hillshade, {min: 150, max:255}, 'Hillshade');
 
-//Slope
-var slope = ee.Terrain.slope(srtm);
+// Create terrain slope and map it
+var slope = ee.Terrain.slope(theSRTM);
 Map.addLayer(slope, {min: 0, max: 20}, 'Slope');
 ```
 
