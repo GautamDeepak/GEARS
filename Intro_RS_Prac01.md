@@ -166,13 +166,6 @@ Map.addLayer(slope, {min: 0, max: 20}, 'Slope')
 ```
 
 ![Figure 15. Slope map](Prac1/slope.png)
--------
-### Thank you
-
-I hope you found that useful. A recorded video of this tutorial can be found on my YouTube Channel's [Introduction to Remote Sensing of the Environment Playlist](https://www.youtube.com/playlist?list=PLf6lu3bePWHDi3-lrSqiyInMGQXM34TSV) and on my lab website [GEARS](https://www.gears-lab.com).
-
-#### Kind regards, Shaun R Levick and Deepak Gautam
-------
 
 ### Complete script
 ```JavaScript
@@ -200,4 +193,14 @@ Map.addLayer(hillshade, {min: 150, max:255}, 'Hillshade');
 var slope = ee.Terrain.slope(srtm);
 Map.addLayer(slope, {min: 0, max: 20}, 'Slope');
 ```
+
+-------
+### Thank you
+
+I hope you found that useful. A recorded video of this tutorial can be found on my YouTube Channel's [Introduction to Remote Sensing of the Environment Playlist](https://www.youtube.com/playlist?list=PLf6lu3bePWHDi3-lrSqiyInMGQXM34TSV) and on my lab website [GEARS](https://www.gears-lab.com).
+
+#### Kind regards, Shaun R Levick and Deepak Gautam
+------
+
+
 ### The end
