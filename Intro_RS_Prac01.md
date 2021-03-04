@@ -66,11 +66,11 @@ and make them more accessible, so we appreciate suggestions on which new dataset
 
 ![Figure 3. Clear script](Prac1/clearscript.png)
 
-3. Search for “elevation” and click on the "NASA SRTM Digital Elevation 30m" result to show the dataset description.
+3. Search for "elevation" or "SRTM" and click on the "NASA SRTM Digital Elevation 30m" result to show the dataset description.
 
 ![Figure 4. Search for elevation data](Prac1/searchelevation.png)
 
-4. View the information on the dataset, and then click on Import, which moves the variable to the Imports section at the top of your script.
+4. View the information on the dataset - look under "description" and "bands". Once you are happy, click on "Import", which moves the variable to the Imports section at the top of your script.
 
 ![Figure 4. View elevation datasource and import](Prac1/viewinfo.png)
 
