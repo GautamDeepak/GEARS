@@ -16,7 +16,7 @@ Completion of this lab exercise requires use of the Google Chrome browser and a 
 
 Once registered you can access the Earth Engine environment here: https://code.earthengine.google.com
 
-Google Earth Engine uses the JavaScript programming language. We will cover the very basics of this language during this course. If you would like more detail you can read through the introduction provided here: [JavaScript background](https://developers.google.com/earth-engine/tutorial\_js\_01)
+Google Earth Engine uses the JavaScript programming language. We will cover the very basics of this language during this course. If you would like more detail you can read through the introduction provided here: [JavaScript background](https://developers.google.com/earth-engine/tutorials/tutorial_js_01)
 
 ------------------------------------------------------------------------
 
