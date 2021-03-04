@@ -66,7 +66,7 @@ and make them more accessible, so we appreciate suggestions on which new dataset
 
 ![Figure 3. Clear script](Prac1/clearscript.png)
 
-3. Search for “elevation” and click on the SRTM Digital Elevation Data 30m result to show the dataset description.
+3. Search for “elevation” and click on the "NASA SRTM Digital Elevation 30m" result to show the dataset description.
 
 ![Figure 4. Search for elevation data](Prac1/searchelevation.png)
 
