@@ -90,7 +90,7 @@ print(theSRTM);
 
 7. Browse through the information that was printed to the console window. Open the “bands” section to show the one band named “elevation”. Note that all this same information is automatically available for all variables in the Imports section.
 
-![Figure 7. SRTM in console](Prac1/bandssrtm.png)
+![Figure 7. SRTM in console](Prac1/browseprint.png)
 
 
 8. Use the Map.addLayer() method to add/display the image to the interactive map. We will start simple, without using any of the optional parameters. After adding the script, hit "run" again. Everytime you make changes to your script, you will neeed to run the script again.
