@@ -43,7 +43,7 @@ The objective of this lab is to strengthen your understanding of image visualisa
 Map.setCenter(132.5685, -12.6312, 8);
 ```
 
-![Figure 1. Navigate to Kakadu](Prac2/run.png)
+![Figure 1. Navigate to Kakadu](Prac2/run.PNG)
 
 3. Now that we are in the right place, let's choose a Sentinel-2 image using the code below. Copy and paste into the Code Editor and click "Run". Copernicus refers to the satellite mission, S2 is short for Sentinel-2, and the long number 20180422T012719_20180422T012714_T52LHM refers to a specific image, defined by a date, time and a path and row of the satellite's orbit. I have chosen a single image for the purposes of this lab, but we will cover searching for images for specific areas and dates at a later stage. 
 
@@ -117,7 +117,7 @@ Map.addLayer(anImage,{bands:['B4','B3','B2'], min:0, max:3000}, "True-colour");
 // Add RGB composite to map, using NIR for false-colour
 Map.addLayer(anImage,{bands:['B8','B4','B3'], min:0, max:3000}, "False-colour");
 ```
-![Figure 9. False-colour composite](Prac2/FCC_NIR.png)
+![Figure 9. False-colour composite](Prac2/FCC_NIR.PNG)
 
 7. Now you can navigate around the scene and flip between the true-colour and false-colour views using the layers tab. Take careful note of how different parts of the scene are represented in these different visualisations - and explore how some features, like burn scars, jump out more clearly in the false-colour composite.
 
