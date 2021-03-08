@@ -179,7 +179,7 @@ Map.addLayer(slope, {min: 0, max: 20}, 'Slope');
 
 3. Dont forget to save your script before closing the Chrome tab.
 
-## 3. Complete script
+## 6. Complete script
 ```JavaScript
 // The SRTM dataset
 var theSRTM = ee.Image("USGS/SRTMGL1_003");
