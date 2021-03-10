@@ -1,5 +1,5 @@
 ![Shaun Levick](Logo3.png)
-# Introduction to Remote Sensing of the Environment
+# Introductory Remote Sensing (ENV202/502)
 Prac 1 - Getting started with Google Earth Engine
 --------------
 
@@ -12,7 +12,7 @@ Prac 1 - Getting started with Google Earth Engine
 ### Prerequisites
 -------------
 
-Completion of this lab exercise requires use of the Google Chrome browser and a Google Earth Engine account. If you have not yet signed up - please do so now in a new tab: [Earth Engine account registration](https://signup.earthengine.google.com/)
+Completion of this Prac exercise requires the use of the Google Chrome browser and a Google Earth Engine account. If you have not yet signed up - please do so now in a new tab: [Earth Engine account registration](https://signup.earthengine.google.com/)
 
 Once registered you can access the Earth Engine environment here: https://code.earthengine.google.com
 
@@ -23,7 +23,7 @@ Google Earth Engine uses the JavaScript programming language. We will cover the 
 ### Objective
 ---------
 
-The objective of this lab is to give you an introduction to the Google Earth Engine processing environment. By the end of this exercise you will be able to search, find and visualise a broad range of remotely sensed datasets. We will start with single-band imagery - elevation data from the [SRTM mission](https://www2.jpl.nasa.gov/srtm/).
+The objective of this Prac is to give you an introduction to the Google Earth Engine processing environment. By the end of this exercise, you will be able to search, find and visualise a broad range of remotely sensed datasets. We will start with single-band imagery - elevation data from the [SRTM mission](https://www2.jpl.nasa.gov/srtm/).
 
 ## 1. The Earth Engine code editor
 
@@ -74,13 +74,13 @@ and make them more accessible, so we appreciate suggestions on which new dataset
 
 ![Figure 4. View elevation datasource and import](Prac1/viewinfo.png)
 
-Question: How many bands does this data have and whats the spatial resolution?
+Question: How many bands do this data have and whats the spatial resolution?
 
 5. Rename the default variable name "image" to anything you like. Here we will rename it to "theSRTM".
 
 ![Figure 5. Rename image](Prac1/rename.png)
 
-6. Print/add the image object to the console by coping the script below into the code editor, and click "run" :
+6. Print/add the image object to the console by copying the script below into the code editor, and click "run" :
 
 ```JavaScript
 print(theSRTM);
@@ -94,17 +94,17 @@ print(theSRTM);
 
 ## 3. Adjusting visualisation parameters
 
-1. Use the Map.addLayer() method to add/display the image to the interactive map. We will start simple, without using any of the optional parameters. After adding the script, hit "run" again. Everytime you make changes to your script, you will neeed to run the script again.
+1. Use the Map.addLayer() method to add/display the image to the interactive map. We will start simple, without using any of the optional parameters. After adding the script, hit "run" again. Every time you make changes to your script, you will need to run the script again.
 
 ```JavaScript
 Map.addLayer(theSRTM);
 ```
 
-The displayed map will look pretty flat grey, because the default visualization parameters maps the full 16­bit range of the data onto the black–white range, but the elevation range is much smaller than that in any particular location. We’ll fix it in a moment.
+The displayed map will look pretty flat grey because the default visualization parameters map the full 16­bit range of the data onto the black–white range, but the elevation range is much smaller than that in any particular location. We’ll fix it in a moment.
 
 ![Figure 8. Map SRTM](Prac1/flatgrey.png)
 
-2. Select the Inspector tab. Then click on a several points on the map to get a feel for the elevation range in this area.
+2. Select the Inspector tab. Then click on several points on the map to get a feel for the elevation range in this area.
 
 ![Figure 8. Inspect SRTM](Prac1/inspector.png)
 
@@ -115,7 +115,7 @@ Map.addLayer(theSRTM, {min: 0, max: 300});
 ```
 ![Figure 9. Visualise SRTM](Prac1/minmax.png)
 
-4. You will now be able to see variation in elevation range with low values in black and highest points in white. Layers added to the map will have default names like "Layer 1", "Layer 2", etc. To improve the readability, we can give each layer a human­-readable name, by adding a title with the syntax in the following code. Don't forget to click run.
+4. You will now be able to see the variation in elevation range with low values in black and highest points in white. Layers added to the map will have default names like "Layer 1", "Layer 2", etc. To improve the readability, we can give each layer a human­-readable name, by adding a title with the syntax in the following code. Don't forget to click run.
 
 ```JavaScript
 Map.addLayer(theSRTM, {min: 0, max: 300}, 'Elevation above sea level');
@@ -124,7 +124,7 @@ Map.addLayer(theSRTM, {min: 0, max: 300}, 'Elevation above sea level');
 
 ## 4. Commenting and saving your scripts
 
-1. Now the code has started to look a little bit messy. Imagine you looking at this code in a year time. Would you still be able to tell which line is doing what task? Hence, it is a good idea to always put comment to your code reminding you of what you did and why. We add comments with two forward slashes // :
+1. Now the code has started to look a little bit messy. Imagine you coming back to this code after a year. Would you still be able to tell which line is doing what task? Hence, it is a good idea to always put comments to your code reminding you of what you did and why. We add comments with two forward slashes // :
 
 ```Javascript
 // Print data details to console
@@ -133,10 +133,10 @@ print(theSRTM);
 // Add the SRTM data to the interactive map
 Map.addLayer(theSRTM);
 
-// Add the data again, but with rescrited value ranges for better visualisation
+// Add the data again, but with restricted value ranges for better visualisation
 Map.addLayer(theSRTM, {min: 0, max: 300});
 
-// Add the data again, with value ranges, and a useful title for teh Layer tab
+// Add the data again, with value ranges, and a useful title for the Layer tab
 Map.addLayer(theSRTM, {min: 0, max: 300}, 'Elevation above sea level');
 ```
 ![Figure 11. Comment script](Prac1/commenting.png)
@@ -177,7 +177,7 @@ Map.addLayer(slope, {min: 0, max: 20}, 'Slope');
 
 ![Figure 15. Slope map](Prac1/slope.png)
 
-3. Dont forget to save your script before closing the Chrome tab.
+3. Don't forget to save your script before closing the Chrome tab.
 
 ## 6. Complete script
 ```JavaScript
@@ -190,7 +190,7 @@ print(theSRTM);
 // Add the SRTM data to the interactive map
 Map.addLayer(theSRTM);
 
-// Add the data again, but with rescrited value ranges for better visualisation
+// Add the data again, but with restricted value ranges for better visualisation
 Map.addLayer(theSRTM, {min: 0, max: 300});
 
 // Add the data again, with value ranges, and a useful title for teh Layer tab
