@@ -1,7 +1,7 @@
 ![Shaun Levick](Logo3.png)
 
-# Introduction to Remote Sensing of the Environment
-Lab 2 - Understanding band combinations and image visualisations
+# Introductory Remote Sensing (ENV202/502)
+Prac 2 - Image visualisation and understanding band combination 
 --------------
 
 ### Acknowledgments
@@ -13,46 +13,41 @@ Lab 2 - Understanding band combinations and image visualisations
 ### Prerequisites
 -------------
 
-Completion of this lab exercise requires use of the Google Chrome browser and a Google Earth Engine account. If you have not yet signed up - please do so now in a new tab:
+Completion of this Prac exercise requires the use of the Google Chrome browser and a Google Earth Engine account. If you have not yet signed up - please do so now in a new tab: [Earth Engine account registration](https://signup.earthengine.google.com/)
 
-[Earth Engine account registration](https://signup.earthengine.google.com/)
+Once registered you can access the Earth Engine environment here: https://code.earthengine.google.com
 
-Once registered you can access the Earth Engine environment here:
-https://code.earthengine.google.com
-
-Google Earth Engine uses the JavaScript programming language. We will cover the very basics of this language during this course. If you would like more detail you can read through the introduction provided here:
-
-[JavaScript background](https://developers.google.com/earth-engine/tutorial\_js\_01)
+Google Earth Engine uses the JavaScript programming language. We will cover the very basics of this language during this course. If you would like more detail you can read through the introduction provided here: [JavaScript background](https://developers.google.com/earth-engine/tutorials/tutorial_js_01)
 
 ------------------------------------------------------------------------
 
 ### Objective
 
 
-The objective of this lab is to strengthen your understanding of image visualisation principles, and develop practical skills in mapping band combinations and exploring reflectance properties of surface elements.
+The objective of this Prac is to strengthen your understanding of image visualisation principles, and develop practical skills in mapping band combinations and exploring reflectance properties of surface elements.
 
 
 ## 1. Loading a Sentinel-2 multispectral image
 
-1. For this lab we will use a multi-spectral image collected by the European Space Agency's Sentinel-2 satellite. Sentinel-2 is a wide-swath, high-resolution, multi-spectral imaging mission supporting Copernicus Land Monitoring studies, including the monitoring of vegetation, soil and water cover, as well as observation of inland waterways and coastal areas. We will use an image collected over Kakadu National Park, Australia.
+1. For this Prac we will use a multi-spectral image collected by the European Space Agency's Sentinel-2 satellite. Sentinel-2 is a wide-swath, high-resolution, multi-spectral imaging mission supporting Copernicus Land Monitoring studies, including the monitoring of vegetation, soil and water cover, as well as observation of inland waterways and coastal areas. We will use an image collected over Kakadu National Park, Australia.
 
-2. Let's navigate to the area of interest (Kakadu) by copying the code below into the Code Editor and clicking "Run". Remember that the line starting with // is a note to ourselves and to others, and is not processed (we call this a comment). The numbers in brackets are the longitude, latitude, and zoom level (range is from 1 to 22).
+2. Let's navigate to the area of interest (Kakadu) by copying the code below into the Code Editor and clicking "Run". Remember that the line starting with // is a note to ourselves and others, and is not processed (we call this a comment). The numbers in brackets are the longitude, latitude, and zoom level (range is from 1 to 22).
 
 ```JavaScript
-//Navigate to area of interest
+//Navigate to the area of interest
 Map.setCenter(132.5685, -12.6312, 8);
 ```
 
 ![Figure 1. Navigate to Kakadu](Prac2/run.PNG)
 
-3. Now that we are in the right place, let's choose a Sentinel-2 image using the code below. Copy and paste into the Code Editor and click "Run". Copernicus refers to the satellite mission, S2 is short for Sentinel-2, and the long number 20180422T012719_20180422T012714_T52LHM refers to a specific image, defined by a date, time and a path and row of the satellite's orbit. I have chosen a single image for the purposes of this lab, but we will cover searching for images for specific areas and dates at a later stage. 
+3. Now that we are in the right place, let's choose a Sentinel-2 image using the code below. Copy and paste into the Code Editor. Copernicus refers to the satellite mission, S2 is short for Sentinel-2, and the long number 20180422T012719_20180422T012714_T52LHM refers to a specific image, defined by date, time and a path and row of the satellite's orbit. Note that I have chosen a single image for this Prac, but we will cover searching for images for specific areas and dates at a later stage. 
 
 ```JavaScript
 // Select a specific Sentinel-2 image from the archive
 var anImage = ee.Image("COPERNICUS/S2/20180422T012719_20180422T012714_T52LHM");
 ```
 
-4. Hit run to see what happens. If you the code did not return any errors, then the image was successfully found in the archive. The script doesnot display or print anything because we havent asked the GEE to do so yet.
+4. Hit run to see what happens. If the code did not return any errors, then the image was successfully found in the archive. The script doesnot display or print anything because we havent asked the GEE to do so yet.
 
 5. Let's run the line below to print the image information to the Console. Once the information loads in the Console, you can click the little dropdown arrows next to "Image" and "bands" to see more details about the band structure and naming format.
 
@@ -75,7 +70,7 @@ print(anImage);
 
 ![Figure 5. Save your script](Prac2/save.png)
 
-## 2. Visualisation of color composites
+## 2. Visualisation and color composites
 
 1. Getting back to our image, Bands 2,3 and 4 are the blue, green and red bands respectively. Therefore if we wish to view a true-colour rendering of the image - i.e. an RGB composite, we need to place Band 4 into the red channel, Band 3 into the green channel, and Band 2 into the blue channel. We can do this with the code below - take careful note of the syntax for specifying the band arrangement.
 
