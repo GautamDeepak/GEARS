@@ -56,7 +56,7 @@ So far you have worked with a single image and looked at band combinations. The 
 
 ---------
 
-##2. Filtering the image collection
+## 2. Filtering the image collection
 
 1. To achieve this we need to use a bit of coding. In the JavaScript programming language two backslashes (//) indicate comment lines and are ignored in actual processing steps. We use // to write notes to ourselves in our code, so that we (and others who might want to use our code) can understand why we have done certain things. In the below script, note that 
 
@@ -86,7 +86,7 @@ Question: Can you figure out how we found out this this keyword "CLOUD_COVERAGE_
 
 ![Figure 6. Filtering the collection](Prac3/run.png)
 ---------
-## Adding images to the map view
+## 3. Adding images to the map view
 1. Now we have refined the entire image collection to a single image called "anImage". In order to actually have a look at this image, we need to add it to our mapping environment. Before doing that however, lets define how we want to display the image. Let’s start with a true colour representation by pasting the following lines below the ones you’ve already added, and click "Run".
 
 ```JavaScript
@@ -109,7 +109,7 @@ Map.addLayer(anImage, trueViz, "true-colour image");
 
 ![Figure 8. Band values](Prac3/bandvalues.png)
 
-12. Now let's have a look at a false colour composite - we need to bring in the near-infrared band (band 8) for this. Paste the following lines below the ones you’ve already added, and click "Run".
+4. Now let's have a look at a false colour composite - we need to bring in the near-infrared band (band 8) for this. Paste the following lines below the ones you’ve already added, and click "Run".
 
 ```JavaScript
 //Define false-colour visualization parameters.
@@ -125,11 +125,11 @@ Map.addLayer(anImage, falseViz, "false-color composite");
 
 ![Figure 9. Adding a false colour composite to the map](Prac3/false.png)
 
-13. False-colour composites place the near infra-red band in the red channel, and we see a strong response to the chlorophyll content in green leaves. Vegetation that appears dark green in true colour, appearing bright red in the false-colour. Note the variations in red that can be seen in the vegetation bordering Rapid Creek. You will also see that "false-colour composite" has been added to the Layers tab in the map view.
+5. False-colour composites place the near infra-red band in the red channel, and we see a strong response to the chlorophyll content in green leaves. Vegetation that appears dark green in true colour, appearing bright red in the false-colour. Note the variations in red that can be seen in the vegetation bordering Rapid Creek. You will also see that "false-colour composite" has been added to the Layers tab in the map view.
 
 ---------
 
-### Calculating indices: an example of NDVI
+## 4. Calculating indices: an example of NDVI
 
 1. Next, let's calculate the normalised-difference vegetation index (NDVI) for this image. NDVI is an index calculated from the RED and NIR bands, according to this equation:
 
@@ -160,7 +160,7 @@ Map.addLayer(ndviImage, {min: 0, max: 1}, "NDVI");
 
 ```javascript
 // Add color palette to the NDVI image.
-Map.addLayer(ndviImage, {min: 0, max: 1, palette: ['brown','red','yellow','green','darkgreen']}, "NDVI-colored");
+Map.addLayer(ndviImage, {min: 0, max: 1, palette: ['red','yellow','green','darkgreen']}, "NDVI-colored");
 ```
 
 ![Figure 10. Retrieving NDVI from Sentinel-2](Prac3/ndvi-colored.png)
@@ -168,7 +168,65 @@ Map.addLayer(ndviImage, {min: 0, max: 1, palette: ['brown','red','yellow','green
 4. At this point you can just just click and drag the point you created (campus) to anywhere in the world and hit run to get all the maps that has been scripted. In the below example, I moved the point to wine-growing region of Coonawarra, SA. 
 
 ![Figure 10. Retrieving NDVI from Sentinel-2](Prac3/coonawarraNDVI.png)
-----
+
+
+### 5. Complete script 
+```JavaScript
+var campus = /* color: #d63000 */ee.Geometry.Point([140.8753806158861, -37.230552670447054]);
+var sent2 = ee.ImageCollection("COPERNICUS/S2");
+
+var anImage = sent2
+  // sent2 is an image collection so lets filter the collection by the the date range we are interested in
+  .filterDate("2020-01-01", Date.now())
+
+  // Next we include a geographic filter to narrow the search to images at the location of our point
+  .filterBounds(campus)
+
+  // Next we will also sort the collection by a metadata property, in our case cloud cover is a very useful one
+  .sort("CLOUD_COVERAGE_ASSESSMENT")
+	
+  // Now lets select the first image out of this collection - i.e. the most cloud free image in the date range and over the campus
+  .first();  //Note that upto here was one line of script, hence, no use colon
+
+  // And let's print the image to the console.
+  print("A Sentinel-2 scene:", anImage);
+    
+// Define visualization parameters in a JavaScript dictionary for true colour rendering. Bands 4,3 and 2 needed for RGB.
+var trueViz = {
+  bands: ["B4", "B3", "B2"],
+  min: 0,
+  max: 3000
+  };
+
+// Add the image to the map, using the visualization parameters.
+Map.addLayer(anImage, trueViz, "true-colour image");
+  
+//Define false-colour visualization parameters.
+var falseViz = {
+  bands: ["B8", "B4", "B3"],
+  min: 0,
+  max: 3000
+  };
+
+// Add the image to the map, using the visualization parameters.
+Map.addLayer(anImage, falseViz, "false-color composite");
+
+//Define variable NDVI from equation
+var ndviImage = anImage.expression(
+  "(NIR - RED) / (NIR + RED)",
+  {
+    RED: anImage.select("B4"),    //  RED
+    NIR: anImage.select("B8"),    // NIR
+    BLUE: anImage.select("B2")    // BLUE
+  });
+
+// Add the NDVI image to the map, using the visualization parameters.
+Map.addLayer(ndviImage, {min: 0, max: 1}, "NDVI");
+
+// Add color palette to the NDVI image.
+Map.addLayer(ndviImage, {min: 0, max: 1, palette: ['red','yellow','green','darkgreen']}, "NDVI-colored");
+```
+------
 ### Practice exercise
 
 1. Search for a cloud free Sentinel-2 image from May, July and September 2018 collected over Litchfield National Park (Litchfield is located south of Darwin, near the town of Batchelor, Northern Territory, Australia).
