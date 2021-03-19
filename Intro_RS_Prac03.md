@@ -86,7 +86,7 @@ Question: Can you figure out how we found out this this keyword "CLOUD_COVERAGE_
 
 ![Figure 6. Filtering the collection](Prac3/run.png)
 ---------
-## 3. Adding images to the map view
+## 3. Adding image to the map view
 1. Now we have refined the entire image collection to a single image called "anImage". In order to actually have a look at this image, we need to add it to our mapping environment. Before doing that however, lets define how we want to display the image. Let’s start with a true colour representation by pasting the following lines below the ones you’ve already added, and click "Run".
 
 ```JavaScript
@@ -107,7 +107,7 @@ Map.addLayer(anImage, trueViz, "true-colour image");
 
 3. In order to find out more information at specific locations, we can use the Inspector tool which is located in the Console Panel - left hand tab. Click on the Inspector tab and then click on the image in the map view. Wherever you click on the image, the band values at that point will be displayed in the Inspector window. Click over some different patch types (sports fields, mangroves, ocean, beach, houses) to see how the spectral profile changes.
 
-![Figure 8. Band values](Prac3/bandvalues.png)
+![Figure 8. Band values](Prac3/bandvalues.PNG)
 
 4. Now let's have a look at a false colour composite - we need to bring in the near-infrared band (band 8) for this. Paste the following lines below the ones you’ve already added, and click "Run".
 
@@ -163,11 +163,11 @@ Map.addLayer(ndviImage, {min: 0, max: 1}, "NDVI");
 Map.addLayer(ndviImage, {min: 0, max: 1, palette: ['red','yellow','green','darkgreen']}, "NDVI-colored");
 ```
 
-![Figure 10. Retrieving NDVI from Sentinel-2](Prac3/ndvi-colored.png)
+![Figure 10. Retrieving NDVI from Sentinel-2](Prac3/ndvi-colored.PNG)
 
 4. At this point you can just just click and drag the point you created (campus) to anywhere in the world and hit run to get all the maps that has been scripted. In the below example, I moved the point to wine-growing region of Coonawarra, SA. 
 
-![Figure 10. Retrieving NDVI from Sentinel-2](Prac3/coonawarraNDVI.png)
+![Figure 10. Retrieving NDVI from Sentinel-2](Prac3/coonawarraNDVI.PNG)
 
 
 ### 5. Complete script 
