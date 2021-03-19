@@ -163,7 +163,7 @@ Map.addLayer(ndviImage, {min: 0, max: 1}, "NDVI");
 Map.addLayer(ndviImage, {min: 0, max: 1, palette: ['red','yellow','green','darkgreen']}, "NDVI-colored");
 ```
 
-![Figure 10. Retrieving NDVI from Sentinel-2](Prac3/ndvi-colored.PNG)
+![Figure 10. Retrieving NDVI from Sentinel-2](Prac3/NDVI-colored.PNG)
 
 4. At this point you can just just click and drag the point you created (campus) to anywhere in the world and hit run to get all the maps that has been scripted. In the below example, I moved the point to wine-growing region of Coonawarra, SA. 
 
