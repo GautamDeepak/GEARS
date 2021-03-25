@@ -1,4 +1,4 @@
-![Shaun Levick](Logo3.png)
+![Shaun Levick](Logo3.PNG)
 
 # Introductory Remote Sensing (ENV202/502)
 Prac 4 - Image Classification - part 1
@@ -35,7 +35,7 @@ The objective of this prac is to gain understanding of the image classification 
 
 2. Building on from last week, we can use the point drawing tool (teardrop icon) from the geometry tools and draw a single point in the region of interest - let's use the town of Cairns for this example.  Then 'Exit' from the drawing tools.  Note that a new variable is created in the imports section, containing the single point, imported as a Geometry.  Change the name of this import to "roi" - short for region of interest.
 
-![Figure 1. Navigating to Cairns](Prac4/roi.png)
+![Figure 1. Navigating to Cairns](Prac4/roi.PNG)
 
 3. Filter the image collection spatially (using the filterBounds command), and temporally (using the filterDate command), and lastly sort the images by cloud cover (using the 'CLOUD_COVER' keyword) and extract the least cloudy scene (using the "first" command). Run the script below to extract our desired image from the Landsat 8 collection and add it to the map view as a true-colour composite:
 
@@ -57,34 +57,34 @@ Map.addLayer(anImage, {bands: ['B4', 'B3', 'B2'],min:0, max: 3000}, 'True colour
 
 Question: In last prac we used "CLOUD_COVERAGE_ASSESSMENT" to sort the images by cloud cover, however, in this prac "CLOUD_COVER" is used. Can you find out why?
 
-![Figure 2. Adding image to map view](Prac4/true_color.png)
+![Figure 2. Adding image to map view](Prac4/true_color.PNG)
 
 4. Have a look around the scene and familiarise yourself with the landscape. You'll notice the image is quite dark image - we can adjust the brightness/contrast using the settings wheels for the layer we created in the Layers tab. Slide the Gamma adjuster slightly to the right (from 1.0 to 1.4) to increase the brightness of the scene. Alternatively, in the previous line of script, you can encode the gamma value in the visualisation parameter as: "{bands: ['B4', 'B3', 'B2'],min:0, max: 3000, gamma:1.4}" 
 
-![Figure 3. Brightness adjustment](Prac4/gamma.png)
+![Figure 3. Brightness adjustment](Prac4/gamma.PNG)
 
 ## 2. Gathering training data for classification
 
 1. The first step in classifying our image is to collect some training data to teach the classifier what each landcover looks like.  We want to collect representative samples of reflectance spectra for each landcover class of interest. First lets gather some sample points to teach classifier what urban area is goig to look like. Hover on the 'Geometry Imports' box next to the geometry drawing tools and click '+ new layer.'
 
-![Figure 3. New Geometry](Prac4/newgeometry.png)
+![Figure 3. New Geometry](Prac4/newgeometry.PNG)
 
 3. The new layer will be imported to the "Geometry Import" box as well as to the import section of you script. Rename the new layer to 'urban'. Notice that the renameing will change the name of the layer in the "Geometry Imports" box.
 
-![Figure 3. Rename Urban](Prac4/rename_urban.png)
+![Figure 3. Rename Urban](Prac4/rename_urban.PNG)
 
 4. Now, locate points in the map that represents the urban or built up areas (buildings, roads, parking lots, etc.). Clicking on the urban area will collect the training data for the urban. Sample minimum of 25 points. For robust classification make sure you are sampling from different types of urban areas (not just one). See example below.  
 
-![Figure 3. Collect the urban class](Prac4/urbandata.png)
+![Figure 3. Collect the urban class](Prac4/urbandata.PNG)
 
 5. Next you need to configure the urban geometry import (cog-wheel, top of the script in imports section) as follows.  Click the cog-wheel icon to configure it, change 'Import as'  from 'Geometry' to 'FeatureCollection'.  Use 'Add property' landcover and set its value to 0.  (Subsequent classes will be 1, 2, 3 etc.). You can also change the color of the 'teardrops', here if you like. When finished, click 'OK'.
 
-![Figure 5. The geometry dialogue box](Prac4/urbanConfigure.png)
+![Figure 5. The geometry dialogue box](Prac4/urbanConfigure.PNG)
 
 
 6. Repeat the steps 1-5 for each land cover class that you wish to include in your classification. Add 'water', 'forest', 'agriculture' , and 'bareland' next - collect >25 points for each class. Use the cog-wheel to configure the geometries - change the type to FeatureCollection and set the property name to landcover with values of 1, 2, 3, and 4 for the different classes.
 
-![Figure 6. Adding classes](Prac4/classes.png)
+![Figure 6. Adding classes](Prac4/classes.PNG)
 
 7. Now we have five classes defined (urban, water, forest, agriculture, bareland), but before we can use them to collect training data we need to merge the 5 landcover features into a single collection, called a FeatureCollection. Run the following line to merge the geometries into a single FeatureCollection:
 
@@ -99,7 +99,7 @@ var LandCoverClasses = urban.merge(water).merge(forest).merge(agriculture).merge
 // Print the land cover feature collection
 print('The land cover feature collection is: ',LandCoverClasses);
 ```
-![Figure 7. Printing classes](Prac4/printclass.png)
+![Figure 7. Printing classes](Prac4/printclass.PNG)
 
 
 ## 3. Creating the training data
@@ -120,7 +120,7 @@ print('The training dataset is: ', LandCoverClasses);
 
 2. After running the script the training data will be printed to the console. You will notice that the 'properties' information has now changed, and in addition to the landcover class, for each point there is now a corresponding reflectance value for each of the selected band of the image.
 
-![Figure 8. Printing training data](Prac4/l4_training.png)
+![Figure 8. Printing training data](Prac4/l4_training.PNG)
 
 
 ## 4. Train the classifier and run the classification
@@ -156,7 +156,7 @@ Map.addLayer(classified, {min: 0, max: 4, palette: ['red', 'blue', 'darkgreen','
 4. From the 'Geometry Import' box, untick all the geometries for better visualisation.
 
 
-![Figure 9. Classified map](Prac4/classified.png)
+![Figure 9. Classified map](Prac4/classified.PNG)
 
 5. Congratulations - your first landcover classification! Zoom in and explore the results of your classification. 
 - Are you happy with the classification?
