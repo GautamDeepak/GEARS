@@ -65,7 +65,7 @@ So far you have worked with a single image and looked at band combinations. The 
     var anImage = sent2
 
     // sent2 is an image collection so lets filter the collection by the the date range we are interested in
-    .filterDate("2015-07-01", "Date.now()")
+    .filterDate("2015-07-01", Date.now())
 
     // Next we include a geographic filter to narrow the search to images at the location of our point
     .filterBounds(campus)
@@ -77,7 +77,7 @@ So far you have worked with a single image and looked at band combinations. The 
     .first();  //Note that upto here was one line of script, hence, no use colon
 
 // And let's print the image to the console.
-print("A Sentinel-2 scene:", image);
+print("A Sentinel-2 scene:", anImage);
 ```
 
 Question: Can you figure out how we found out this this keyword "CLOUD_COVERAGE_ASSESSMENT". Are there any others?
