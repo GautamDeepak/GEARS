@@ -69,31 +69,31 @@ Question: In last prac we used "CLOUD_COVERAGE_ASSESSMENT" to sort the images by
 
 ![Figure 3. New Geometry](Prac4/newgeometry.PNG)
 
-3. The new layer will be imported to the "Geometry Import" box as well as to the import section of you script. Rename the new layer to 'urban'. Notice that the renameing will change the name of the layer in the "Geometry Imports" box.
+2. The new layer will be imported to the "Geometry Import" box as well as to the import section of you script. Rename the new layer to 'urban'. Notice that the renameing will change the name of the layer in the "Geometry Imports" box.
 
 ![Figure 3. Rename Urban](Prac4/rename_urban.PNG)
 
-4. Now, locate points in the map that represents the urban or built up areas (buildings, roads, parking lots, etc.). Clicking on the urban area will collect the training data for the urban. Sample minimum of 25 points. For robust classification make sure you are sampling from different types of urban areas (not just one). See example below.  
+3. Now, locate points in the map that represents the urban or built up areas (buildings, roads, parking lots, etc.). Clicking on the urban area will collect the training data for the urban. Sample minimum of 25 points. For robust classification make sure you are sampling from different types of urban areas (not just one). See example below.  
 
 ![Figure 3. Collect the urban class](Prac4/urbandata.PNG)
 
-5. Next you need to configure the urban geometry import (cog-wheel, top of the script in imports section) as follows.  Click the cog-wheel icon to configure it, change 'Import as'  from 'Geometry' to 'FeatureCollection'.  Use 'Add property' landcover and set its value to 0.  (Subsequent classes will be 1, 2, 3 etc.). You can also change the color of the 'teardrops', here if you like. When finished, click 'OK'.
+4. Next you need to configure the urban geometry import (cog-wheel, top of the script in imports section) as follows.  Click the cog-wheel icon to configure it, change 'Import as'  from 'Geometry' to 'FeatureCollection'.  Use 'Add property' landcover and set its value to 0.  (Subsequent classes will be 1, 2, 3 etc.). You can also change the color of the 'teardrops', here if you like. When finished, click 'OK'.
 
 ![Figure 5. The geometry dialogue box](Prac4/urbanConfigure.PNG)
 
 
-6. Repeat the steps 1-5 for each land cover class that you wish to include in your classification. Add 'water', 'forest', 'agriculture' , and 'bareland' next - collect >25 points for each class. Use the cog-wheel to configure the geometries - change the type to FeatureCollection and set the property name to landcover with values of 1, 2, 3, and 4 for the different classes.
+5. Repeat the steps 1-5 for each land cover class that you wish to include in your classification. Add 'water', 'forest', 'agriculture' , and 'bareland' next - collect >25 points for each class. Use the cog-wheel to configure the geometries - change the type to FeatureCollection and set the property name to landcover with values of 1, 2, 3, and 4 for the different classes.
 
 ![Figure 6. Adding classes](Prac4/classes.PNG)
 
-7. Now we have five classes defined (urban, water, forest, agriculture, bareland), but before we can use them to collect training data we need to merge the 5 landcover features into a single collection, called a FeatureCollection. Run the following line to merge the geometries into a single FeatureCollection:
+6. Now we have five classes defined (urban, water, forest, agriculture, bareland), but before we can use them to collect training data we need to merge the 5 landcover features into a single collection, called a FeatureCollection. Run the following line to merge the geometries into a single FeatureCollection:
 
 ```javascript
 // Merge the 5 landcover class features into a single featureCollection
 var LandCoverClasses = urban.merge(water).merge(forest).merge(agriculture).merge(bareland);
 ```
 
-8. Print the feature collection and inspect the features.
+7. Print the feature collection and inspect the features.
 
 ```javascript
 // Print the land cover feature collection
@@ -165,7 +165,7 @@ Map.addLayer(classified, {min: 0, max: 4, palette: ['red', 'blue', 'darkgreen','
 
 We will look at how to refine this and discuss limitations and avenues for improvement next week.
 
-### 5. Complete script (excluding the ImageCollection, roi, and landcover features)
+## 5. Complete script (excluding the ImageCollection, roi, and landcover features)
 ```JavaScript
 // Lets filter the image collection to get a single image
 var anImage = L8
