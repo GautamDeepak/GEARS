@@ -1,4 +1,4 @@
-![Shaun Levick](Logo3.PNG)
+![Shaun Levick](Logo3.png)
 
 # Introductory Remote Sensing (ENV202/502)
 Prac 4 - Image Classification - part 1
@@ -120,7 +120,7 @@ print('The training dataset is: ', LandCoverClasses);
 
 2. After running the script the training data will be printed to the console. You will notice that the 'properties' information has now changed, and in addition to the landcover class, for each point there is now a corresponding reflectance value for each of the selected band of the image.
 
-![Figure 8. Printing training data](Prac4/l4_training.PNG)
+![Figure 8. Printing training data](Prac4/training.PNG)
 
 
 ## 4. Train the classifier and run the classification
