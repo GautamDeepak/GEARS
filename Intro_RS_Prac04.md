@@ -107,6 +107,9 @@ print('The land cover feature collection is: ',LandCoverClasses);
 1. Now we can use the FeatureCollection we created to drill through the image and extract the reflectance data for each point, from every band. We create training data by overlaying the training points on the image.  This will add new properties to the feature collection that represent image band values at each point:
 
 ```javascript
+// These will be the bands whose reflectance data will be extracted from the image for training purpose
+var bands = ['B2', 'B3', 'B4', 'B5', 'B6', 'B7'];
+
 // add new properties to the "LandCoverClasses" - the new property is the reflectance data from the above bands
 LandCoverClasses = anImage.select(bands).sampleRegions({ // sample the reflectance from selected bands
   collection: LandCoverClasses, // save the reflectance to the LandCoverClasses
