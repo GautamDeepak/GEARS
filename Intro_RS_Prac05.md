@@ -47,7 +47,7 @@ Map.addLayer(anImage, {bands: ['B4', 'B3', 'B2'],min:0, max: 3000, gamma:1.4}, '
 
 ```
 
-![Figure 1. True color image](Prac5/trueColor.PNG)
+![Figure 1. True color image](Prac5/tureColor.PNG)
 
 4. First we will specify which region to grab the spectral reflectance curve from. Click on new layer under the Geometry tool and create new polygons using the rectangle tool for three classes (Water, Urban, Forest) that we want to plot the spectral reflectance curve of. And rename each of the geometry classes accordingly.
 
