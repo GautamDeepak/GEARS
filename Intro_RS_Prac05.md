@@ -47,15 +47,15 @@ Map.addLayer(anImage, {bands: ['B4', 'B3', 'B2'],min:0, max: 3000, gamma:1.4}, '
 
 ```
 
-![Figure 1. True color image](prac5/trueColor.PNG)
+![Figure 1. True color image](Prac5/trueColor.PNG)
 
 4. First we will specify which region to grab the spectral reflectance curve from. Click on new layer under the Geometry tool and create new polygons using the rectangle tool for three classes (Water, Urban, Forest) that we want to plot the spectral reflectance curve of. And rename each of the geometry classes accordingly.
 
-![Figure 2. Make rectangle polygons](prac5/polygon.PNG)
+![Figure 2. Make rectangle polygons](Prac5/polygon.PNG)
 
 5. Change the geometry type to Feature and and define a 'label' in the properties tab. Repeat for all the polygons.
 
-![Figure 2. Defining Feature and Labels](prac5/features.PNG)
+![Figure 2. Defining Feature and Labels](Prac5/features.PNG)
 
 6. Now specify the bands that you want to use to construct the spectral reflectance curve. You can use all or some of the bands. In below script, I used the bands 1-7 which include the Costal blue, blue, green, red, NIR, SWIR1 and SWIR2.
 
@@ -81,7 +81,7 @@ print(reflectanceChart);
 
 ```
 
-![Figure 3. Chart 1](prac5/chart1.PNG)
+![Figure 3. Chart 1](Prac5/chart1.PNG)
 
 8. Lets create another chart where we improve the readability by specifying correct labels and title, ticks, colors, etc. Lets start by defining what x-axis ticks are going to be. e.g. instead of B1, B2, ..., B7 as in above figure, lets use the actual band wavelengths on the x-axis using this:
 
@@ -124,10 +124,10 @@ var reflectanceChart1 = ui.Chart.image.regions({
 // Now print the chart
 print(reflectanceChart1);
 ```
-![Figure 4. Chart 2](prac5/chart2.PNG)
+![Figure 4. Chart 2](Prac5/chart2.PNG)
 
 11. On the top right cornor of the chart you have a pop-up button (highlighted in previous figure). Click on the button that will open the chart in next chrome tab. In this tab you will have the options to save the figure as PNG, or download the actual chart data in CSV. 
-![Figure 4. Chart 2](prac5/chart3.PNG)
+![Figure 4. Chart 2](Prac5/chart3.PNG)
 
 ## 4. Exercises
 
