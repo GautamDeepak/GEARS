@@ -1,7 +1,7 @@
 ![Shaun Levick](Logo3.png)
 
 # Introductory Remote Sensing (ENV202/502)
-Lab 7 - Classification validation and accuracy assessment
+Prac 7 - Classification validation and accuracy assessment
 --------------
 
 ### Acknowledgments
