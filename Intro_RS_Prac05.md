@@ -62,7 +62,7 @@ Map.addLayer(anImage, {bands: ['B4', 'B3', 'B2'],min:0, max: 3000, gamma:1.4}, '
 ```JavaScript
 //Choose bands that you want to include in the spectral reflectance curve and define feature collection to use
 var bandsToPlot = anImage.select('B[1-7]'); // we are creating new image with only these bands
-var landscapeClass = ee.FeatureCollection([water,urban,forest]);
+var landscapeRegions = ee.FeatureCollection([water,urban,forest]);
 ```
 
 7. Now we can create a chart variable and then print the chart to the console. We use the image.regions function to summarise by class region, and the ee.Reducer.mean() function to obtain the mean reflectance value for each class for each band.
@@ -76,7 +76,7 @@ var reflectanceChart = ui.Chart.image.regions({
     reducer:ee.Reducer.mean(), // the reducer here we compute mean reflectance              //
     seriesProperty: 'label'}); // use the labelproperty we defined earlier as the legend
 
-	// Now print the chart
+// Now print the chart
 print(reflectanceChart);
 
 ```
@@ -121,7 +121,7 @@ var reflectanceChart1 = ui.Chart.image.regions({
     seriesProperty: 'label', // use the labelproperty we defined earlier as the legend
     xLabels: wavelengths}) // use wavelength value instead of B1--B7
     .setOptions(plotOptions);
-	// Now print the chart
+// Now print the chart
 print(reflectanceChart1);
 ```
 ![Figure 4. Chart 2](prac5/chart2.PNG)
@@ -150,7 +150,7 @@ Map.addLayer(anImage, {bands: ['B4', 'B3', 'B2'],min:0, max: 3000, gamma:1.4}, '
 //Choose bands that you want to include in the spectral reflectance curve and define feature collection to use
 var bandsToPlot = anImage.select('B[1-7]'); // we are creating new image with only these bands
 var landscapeRegions = ee.FeatureCollection([water,urban,forest]);
-var wavelengths = [443, 482, 562, 655, 865, 1609, 2201];
+
 
 // Create the reflectance chart
 var reflectanceChart = ui.Chart.image.regions({
@@ -187,7 +187,6 @@ var reflectanceChart1 = ui.Chart.image.regions({
     seriesProperty: 'label', // use the labelproperty we defined earlier as the legend
     xLabels: wavelengths}) // use wavelength value instead of B1--B7
     .setOptions(plotOptions);
-
 // Now print the chart
 print(reflectanceChart1);
 
