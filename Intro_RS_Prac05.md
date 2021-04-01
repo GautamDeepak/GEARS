@@ -24,14 +24,14 @@ Google Earth Engine uses the JavaScript programming language. We will cover the 
 ### Objective
 
 
-The objective of this lab is to further your understanding of spectral responses, and develop skills in using the Charting functions in Earth Engine (JavaScript).
+The objective of this lab is to further your understanding of spectral responses and develop skills in using the Charting functions in Earth Engine (JavaScript).
 
 ----------
 
 ## 1. Load up a Landsat-8 scene
 1. Navigate to an area of interest for you.
 2. Place a point marker on the map and rename it to "roi".
-3. Run the code below to pull up a cloud free image for a specific date range (adjust as needed).
+3. Run the code below to pull up a cloud-free image for a specific date range (adjust as needed).
 
 
 ```JavaScript
@@ -47,11 +47,11 @@ Map.addLayer(anImage, {bands: ['B4', 'B3', 'B2'],min:0, max: 3000, gamma:1.4}, '
 
 ```
 
-![Figure 1. True color image](Prac5/tureColor.PNG)
+![Figure 1. True-color image](Prac5/tureColor.PNG)
 
 ##2 Define geometry regions to plot the reflectance curve
 
-1. First we will specify which region (within the image) to grab the spectral reflectance curve from. Click on new layer under the Geometry tool and create new polygons using the rectangle tool for three classes (Water, Urban, Forest). Rename each of the geometry classes accordingly.
+1. First we will specify which region (within the image) to grab the spectral reflectance curve from. Click on ‘new layer’ under the Geometry tool and create new polygons using the rectangle tool for three classes (Water, Urban, Forest). Rename each of the geometry classes accordingly.
 
 ![Figure 2. Make rectangle polygons](Prac5/polygon.PNG)
 
@@ -59,7 +59,7 @@ Map.addLayer(anImage, {bands: ['B4', 'B3', 'B2'],min:0, max: 3000, gamma:1.4}, '
 
 ![Figure 2. Defining Feature and Labels](Prac5/features.PNG)
 
-3. Now specify the bands that you want to use to construct the spectral reflectance curve. You can use all the available bands or use selected bands. In below script, I used the bands 1-7 which include the Costal blue, blue, green, red, NIR, SWIR1 and SWIR2.
+3. Now specify the bands that you want to use to construct the spectral reflectance curve. You can use all the available bands or use selected bands. In the below script, I used the bands 1-7 which include the Costal blue, blue, green, red, NIR, SWIR1 and SWIR2.
 
 ```JavaScript
 //Choose bands that you want to include in the spectral reflectance curve and define feature collection to use
@@ -87,9 +87,9 @@ print(reflectanceChart);
 
 ![Figure 3. Chart 1](Prac5/chart1.PNG)
 
-Question: Why does the urban chart has that characterstics of vegetation chart? i.e. absorption in B4 (Red) and high reflectance in B5 (NIR)?
+Question: Why does the urban chart have the characteristics of the vegetation chart? i.e. absorption in B4 (Red) and high reflectance in B5 (NIR)?
 
-2. Great. But the above chart is not easy to read. Lets improve the redability of the above chart by specifying correct labels and title, ticks, colors, etc. Lets start by defining what x-axis ticks are going to be. e.g. instead of B1, B2, ..., B7 as in above figure, lets use the actual band wavelengths on the x-axis using this:
+2. Great. But the above chart is not easy to read. Let's improve the readability of the above chart by specifying correct labels and title, ticks, colors, etc. Let's start by defining what x-axis ticks are going to be. e.g. instead of B1, B2, ..., B7 as in the above figure, let's use the actual band wavelengths on the x-axis using this:
 
 ```JavaScript
 // Define a list of Landsat-8 wavelengths for X-axis labels.
@@ -131,14 +131,14 @@ print(reflectanceChart1);
 ```
 ![Figure 4. Chart 2](Prac5/chart2.PNG)
 
-5. On the top right cornor of the chart you have a pop-up button (highlighted in previous figure). Click on the button that will open the chart in next chrome tab. In this tab you will have the options to save the figure as PNG, or download the actual chart data in CSV. 
+5. On the top right corner of the chart you have a pop-up button (highlighted in the previous figure). Click on the button that will open the chart in the next chrome tab. In this tab, you will have the options to save the figure as PNG or download the raw chart data in CSV. 
 ![Figure 4. Chart 2](Prac5/chart3.PNG)
 
 ## 4. Exercises
 
 - Try and plot spectra for a Sentinel-2 image, instead of a Landsat-8 one.
 - Experiment with additional landcover classes 
-- After completing this prac, you are ready to attempt the assessment#2
+- After completing this prac, you are ready to attempt Assessment#2
 
 ## 5. Complete script
 ```JavaScript
