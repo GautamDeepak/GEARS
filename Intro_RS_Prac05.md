@@ -1,7 +1,7 @@
 ![Shaun Levick](Logo3.png)
 
 # # Introductory Remote Sensing (ENV202/502)
-Lab 6 - Plotting spectral response curves
+Lab 5 - Plotting spectral response curves
 --------------
 
 ### Acknowledgments
@@ -47,15 +47,15 @@ Map.addLayer(anImage, {bands: ['B4', 'B3', 'B2'],min:0, max: 3000, gamma:1.4}, '
 
 ```
 
-![Figure 1. True color image](Prac6/trueColor.png)
+![Figure 1. True color image](Prac6/trueColor.PNG)
 
 4. First we will specify which region to grab the spectral reflectance curve from. Click on new layer under the Geometry tool and create new polygons using the rectangle tool for three classes (Water, Urban, Forest) that we want to plot the spectral reflectance curve of. And rename each of the geometry classes accordingly.
 
-![Figure 2. Make rectangle polygons](Prac6/polygon.png)
+![Figure 2. Make rectangle polygons](Prac6/polygon.PNG)
 
 5. Change the geometry type to Feature and and define a 'label' in the properties tab. Repeat for all the polygons.
 
-![Figure 2. Defining Feature and Labels](Prac6/features.png)
+![Figure 2. Defining Feature and Labels](Prac6/features.PNG)
 
 6. Now specify the bands that you want to use to construct the spectral reflectance curve. You can use all or some of the bands. In below script, I used the bands 1-7 which include the Costal blue, blue, green, red, NIR, SWIR1 and SWIR2.
 
@@ -81,7 +81,7 @@ print(reflectanceChart);
 
 ```
 
-![Figure 3. Chart 1](Prac6/chart1.png)
+![Figure 3. Chart 1](Prac6/chart1.PNG)
 
 8. Lets create another chart where we improve the readability by specifying correct labels and title, ticks, colors, etc. Lets start by defining what x-axis ticks are going to be. e.g. instead of B1, B2, ..., B7 as in above figure, lets use the actual band wavelengths on the x-axis using this:
 
@@ -124,15 +124,16 @@ var reflectanceChart1 = ui.Chart.image.regions({
 	// Now print the chart
 print(reflectanceChart1);
 ```
-![Figure 4. Chart 2](Prac6/chart2.png)
+![Figure 4. Chart 2](Prac6/chart2.PNG)
 
 11. On the top right cornor of the chart you have a pop-up button (highlighted in previous figure). Click on the button that will open the chart in next chrome tab. In this tab you will have the options to save the figure as PNG, or download the actual chart data in CSV. 
-![Figure 4. Chart 2](Prac6/chart3.png)
+![Figure 4. Chart 2](Prac6/chart3.PNG)
 
 ## 4. Exercises
 
 - Try and plot spectra for a Sentinel-2 image, instead of a Landsat-8 one.
 - Experiment with additional landcover classes 
+- After this prac, you can also complete the assessment#2
 
 ## 5. Complete script
 ```JavaScript
@@ -189,7 +190,6 @@ var reflectanceChart1 = ui.Chart.image.regions({
 
 // Now print the chart
 print(reflectanceChart1);
-
 
 ```
 
