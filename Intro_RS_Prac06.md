@@ -11,7 +11,7 @@ Prac 6 - Image classification - part 2: validation and accuracy assessment
 ------
 
 ### Prerequisites
--------------
+--------------
 
 Completion of this Prac exercise requires the use of the Google Chrome browser and a Google Earth Engine account. If you have not yet signed up - please do so now in a new tab: [Earth Engine account registration](https://signup.earthengine.google.com/)
 
@@ -23,15 +23,15 @@ Google Earth Engine uses the JavaScript programming language. We will cover the 
 
 ### Objective
 
-The objective of this lab is to further your understanding of the image classification process, improve the classification from last week, and learn how to evaluate image classification results and conduct an accuracy assessment using independent validation data.
+The objective of this Prac is to further your understanding of the image classification process, improve the classification from last week, and learn how to evaluate image classification results and conduct an accuracy assessment using independent validation data.
 
 ----------
 
-## 1. Load up your previous classification from last week
+## 1. Load up your previous classification work on Google EarthEngine
 
-Open you script from last week's lab. If you did not save it, repeat the steps from [Lab 4](https://github.com/GautamDeepak/Intro_RS/edit/master/Intro_RS_Prac04.md) and be sure to save it this time.
+1. Open you script from previous classification Prac last week's Prac. Make any minor change (e.g. add an enter at the end of the script) so you can save the script under new name (e.g. Prac06).
 
-I have provided the full code below, but remember that you need to manually collect the training data and assign landcover properties.
+2. If you did not save the script in Prac04, repeat the steps from [Prac 4](https://github.com/GautamDeepak/Intro_RS/blob/master/Intro_RS_Prac04.md) and be sure to save it this time. I have provided the full code below, but remember that you need to manually collect the training data and assign landcover properties.
 ```JavaScript
 // Lets filter the image collection to get a single image
 var anImage = L8
@@ -82,27 +82,42 @@ var classified = anImage.select(bands).classify(classifier);
 Map.centerObject(roi, 10);
 Map.addLayer(classified, {min: 0, max: 4, palette: ['red', 'blue', 'darkgreen','lightgreen', 'gray']}, 'Classified map');
 
-
 ```
+3. Run the script to ge the classified map
 
-![Figure 1. Classified map](Prac5/l4_classified.png)
+![Figure 1. Classified map](Prac6/classified.png)
 
 -----
-## Improving the Classification
+## 2. Improving the Classification
 
-We ended last week with a discussion on whether or not we were happy with this classification. Even without any quantitative data, it was clearly lacking in some regions. How can we improve it? There are a few option we can explore:
+We ended the Prac04 with a discussion on whether or not we were happy with this classification. Even without any quantitative data, it was clearly lacking in some regions. How can we improve it? Below are a few option that you may explore. We will NOT go through the suggested approaches. These are just suggestions for you to tryout and learn.
 
-1. Change the training sample size. We only sampled 25 pixels per class. This was a lot of clicking, but we could use polygons instead of points to sample more pixels for training.
-2. Change the sampling strategy. We collected an even number of points per class, but some landcover class cover much more area than others. We could experiment with a stratified sampling approach instead.
-3. Change the classifier. We used a CART classifier, we could try a different approach such as a support vector machine (SVM) or randomForest (randomForest) approach.
-4. Change the bands. We could add ancillary information, such as elevation data, or a derived index such as NDVI to provide for information for class discrimination.
-5. Change the image. We used a winter scene from Landsat-8. We could try a summer scene, or switch to a Sentinel-2 image.
+1. Changing the training sample size: - We only sampled 25 pixels per class. This was a lot of clicking, but we could use polygons instead of points to sample more pixels for training. Having more training data could improve the accuracy of classification.
+
+2. Changing the sampling strategy: - We collected an even number of points per class (25 pixels each class), but some landcover class cover much more area than others. We could experiment with a stratified sampling approach instead.
+
+3. Changing the classifier: - We used a CART classifier, we could try a different approach such as a support vector machine (SVM) or randomForest (randomForest) approach (search for these commands in the docs section). I am a big fan of randomForest.
+
+4. Changing the input bands: - We classified the landscape using 6 bands [B2--B7]. You could always add additional bands which could improve the classification. 
+
+6. Adding derived indices as input: - In addition to the bands, you could try to add ancillary information, such as elevation data, or a derived index such as NDVI, NDWI which may help better discrimination between the classes. 
+
+5. Changing the input image: - We used a winter scene from Landsat-8. We could try a summer scene from Landsat-8, or switchover to a Sentinel-2 image.
+
+DEEPAK HERE
+##2. Accuracy assessment Changing the training sample size 
 
 
+```
+JavaScript
+```
 -------
 ### Thank you
 
-I hope you found that useful. A recorded video of this tutorial can be found on my YouTube Channel's [Introduction to Remote Sensing of the Environment Playlist](https://www.youtube.com/playlist?list=PLf6lu3bePWHDi3-lrSqiyInMGQXM34TSV) and on my lab website [GEARS](https://www.gears-lab.com).
+I hope you found that useful. A recorded video of this tutorial can be found on my YouTube Channel's [Introduction to Remote Sensing of the Environment Playlist](https://www.youtube.com/playlist?list=PLf6lu3bePWHDi3-lrSqiyInMGQXM34TSV).
 
-#### Kind regards, Shaun R Levick
+#### Kind regards, Shaun R Levick (edit Deepak Gautam)
 ------
+
+
+### The end
