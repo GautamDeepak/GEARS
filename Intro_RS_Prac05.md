@@ -87,6 +87,8 @@ print(reflectanceChart);
 
 ![Figure 3. Chart 1](Prac5/chart1.PNG)
 
+Question: Why does the urban chart has that characterstics of vegetation chart? i.e. absorption in B4 (Red) and high reflectance in B5 (NIR)?
+
 2. Great. But the above chart is not easy to read. Lets improve the redability of the above chart by specifying correct labels and title, ticks, colors, etc. Lets start by defining what x-axis ticks are going to be. e.g. instead of B1, B2, ..., B7 as in above figure, lets use the actual band wavelengths on the x-axis using this:
 
 ```JavaScript
