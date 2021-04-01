@@ -1,7 +1,8 @@
 ![Shaun Levick](Logo3.png)
+GEARS - Geospatial Ecology and Remote Sensing lab - https://www.gears-lab.com
 
-# Introductory Remote Sensing (ENV202/502)
-Lab 5 - Image classification - part 2: validation and accuracy assessment
+# Introduction to Remote Sensing of the Environment
+Lab 6 - Plotting spectral response curves
 --------------
 
 ### Acknowledgments
@@ -13,26 +14,35 @@ Lab 5 - Image classification - part 2: validation and accuracy assessment
 ### Prerequisites
 -------------
 
-Completion of this Prac exercise requires the use of the Google Chrome browser and a Google Earth Engine account. If you have not yet signed up - please do so now in a new tab: [Earth Engine account registration](https://signup.earthengine.google.com/)
+Completion of this lab exercise requires use of the Google Chrome browser and a Google Earth Engine account. If you have not yet signed up - please do so now in a new tab:
 
-Once registered you can access the Earth Engine environment here: https://code.earthengine.google.com
+[Earth Engine account registration](https://signup.earthengine.google.com/)
 
-Google Earth Engine uses the JavaScript programming language. We will cover the very basics of this language during this course. If you would like more detail you can read through the introduction provided here: [JavaScript background](https://developers.google.com/earth-engine/tutorials/tutorial_js_01)
+Once registered you can access the Earth Engine environment here:
+https://code.earthengine.google.com
+
+This lab follows on from others in this series:
+
+[Lab 1](https://github.com/geospatialeco/GEARS/blob/master/Intro_RS_Lab1.md) -
+[Lab 2](https://github.com/geospatialeco/GEARS/blob/master/Intro_RS_Lab2.md) -
+[Lab 3](https://github.com/geospatialeco/GEARS/blob/master/Intro_RS_Lab3.md) -
+[Lab 4](https://github.com/geospatialeco/GEARS/blob/master/Intro_RS_Lab4.md) -
+[Lab 5](https://github.com/geospatialeco/GEARS/blob/master/Intro_RS_Lab5.md)
 
 ------------------------------------------------------------------------
 
 ### Objective
 
 
-The objective of this lab is to further your understanding of the image classification process, improve the classification from last week, and learn how to evaluate image classification results and conduct an accuracy assessment using independent validation data.
+The objective of this lab is to further your understanding of spectral responses, and develop skills in using the Charting functions in Earth Engine (JavaScript).
 
 ----------
 
-## Load up your previous classification from last week
+## Load up a Landsat-8 scene
+1. Navigate to an area of interest for you.
+2. Place a point marker on the map and rename it "roi".
+3. Run the code below to pull up a cloud free image for a specific date range (adjust as needed).
 
-Open you script from last week's lab. If you did not save it, repeat the steps from [Lab 4](https://github.com/GautamDeepak/Intro_RS/edit/master/Intro_RS_Prac04.md) and be sure to save it this time.
-
-I have provided the full code below, but remember that you need to manually collect the training data and assign landcover properties.
 
 ```JavaScript
 //Filter image collection for time window, spatial location, and cloud cover
@@ -44,49 +54,82 @@ var image = ee.Image(ee.ImageCollection('LANDSAT/LC08/C01/T1_SR')
 
 //Add true-clour composite to map
 Map.addLayer(image, {bands: ['B4', 'B3', 'B2'],min:0, max: 3000}, 'True colour image');
-
-//Merge features into one FeatureCollection
-var classNames = urban.merge(water).merge(forest).merge(agriculture);
-
-//Select bands to use
-var bands = ['B2', 'B3', 'B4', 'B5', 'B6', 'B7'];
-
-//Sample the reflectance values for each training point
-var training = image.select(bands).sampleRegions({
-  collection: classNames,
-  properties: ['landcover'],
-  scale: 30
-});
-
-//Train the classifier - in this case using a CART regression tree
-var classifier = ee.Classifier.cart().train({
-  features: training,
-  classProperty: 'landcover',
-  inputProperties: bands
-});
-
-//Run the classification
-var classified = image.select(bands).classify(classifier);
-
-//Display the classification map
-Map.centerObject(classNames, 11);
-Map.addLayer(classified,
-{min: 0, max: 3, palette: ['red', 'blue', 'green','yellow']},
-'classification');
 ```
 
-![Figure 1. Classified map](Prac5/l4_classified.png)
+First we will specify which bands to use, and create new polygons Using the (rectangle tool) for three classes (Water, Forest, City) we want to explore.
 
------
-## Improving the Classification
+![Figure 1. Make rectangle polygons](Prac6/l5_poly.png)
 
-We ended last week with a discussion on whether or not we were happy with this classification. Even without any quantitative data, it was clearly lacking in some regions. How can we improve it? There are a few option we can explore:
 
-1. Change the training sample size. We only sampled 25 pixels per class. This was a lot of clicking, but we could use polygons instead of points to sample more pixels for training.
-2. Change the sampling strategy. We collected an even number of points per class, but some landcover class cover much more area than others. We could experiment with a stratified sampling approach instead.
-3. Change the classifier. We used a CART classifier, we could try a different approach such as a support vector machine (SVM) or randomForest (randomForest) approach.
-4. Change the bands. We could add ancillary information, such as elevation data, or a derived index such as NDVI to provide for information for class discrimination.
-5. Change the image. We used a winter scene from Landsat-8. We could try a summer scene, or switch to a Sentinel-2 image.
+
+Change the geometry type to Feature and and define a 'label' in the properties tab.
+
+![Figure 2. Defining Feature and Labels](Prac6/l5_feature.png)
+
+```JavaScript
+//Choose bands to include and define feature collection to use
+var subset = image.select('B[1-7]')
+var samples = ee.FeatureCollection([Water,Forest,City]);
+```
+
+Now we can create a chart variable and then print it to the console. We use the image.regions function to summarise by class region, and the ee.Reducer.mean() function to obtain the mean reflectance value for each class for each band.
+
+
+```JavaScript
+// Create the scatter chart
+var Chart1 = ui.Chart.image.regions(
+    subset, samples, ee.Reducer.mean(), 10, 'label')
+        .setChartType('ScatterChart');
+print(Chart1);
+```
+
+![Figure 3. Chart 1](Prac6/ee-chart2.png)
+
+We can improve the readability of our chart by specifying some display options.
+
+```JavaScript
+// Define customization options.
+var plotOptions = {
+  title: 'Landsat-8  Surface reflectance spectra',
+  hAxis: {title: 'Wavelength (nanometers)'},
+  vAxis: {title: 'Reflectance'},
+  lineWidth: 1,
+  pointSize: 4,
+  series: {
+    0: {color: 'blue'}, // Water
+    1: {color: 'green'}, // Forest
+    2: {color: 'red'}, // City
+}};
+```
+
+And we can print the actual band wavelengths on the x-axis using this:
+
+```JavaScript
+// Define a list of Landsat-8 wavelengths for X-axis labels.
+var wavelengths = [443, 482, 562, 655, 865, 1609, 2201];
+```
+
+```Create the chart with more options
+// Create the chart and set options.
+var Chart2 = ui.Chart.image.regions(
+    subset, samples, ee.Reducer.mean(), 10, 'label', wavelengths)
+        .setChartType('ScatterChart')
+        .setOptions(plotOptions);
+// Display the chart.
+print(Chart2);
+```
+![Figure 4. Chart 2](Prac6/ee-chart11.png)
+
+## Exercises
+
+- Try and run a supervised classification and plot spectra for a Sentinel-2 image, instead of a Landsat-8 one.
+- Experiment with clipping your maps to specific boundaries.
+
+Hint: you can use .clip(polygon) to clip a map of an image to the shape of a geometry called "polygon".
+
+```JavaScript
+Map.addLayer(image.clip(polygon), {bands: ['B4', 'B3', 'B2'],min:0, max: 3000}, 'True colour image');
+```
 
 
 -------
