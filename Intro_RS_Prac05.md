@@ -77,7 +77,7 @@ var landscapeRegions = ee.FeatureCollection([water,urban,forest]);
 var reflectanceChart = ui.Chart.image.regions({
     image:bandsToPlot, // the image where to grab the reflectance data from
     regions:landscapeRegions, // the regions within the image to sample from
-    reducer:ee.Reducer.mean(), // the reducer here we compute mean reflectance              //
+    reducer:ee.Reducer.mean(), // the reducer here we compute mean reflectance
     seriesProperty: 'label'}); // use the labelproperty we defined earlier as the legend
 
 // Now print the chart. You need to print to actually see the chart
@@ -120,7 +120,7 @@ var plotOptions = {
 var reflectanceChart1 = ui.Chart.image.regions({
     image:bandsToPlot, // the image where to grab the reflectance data from
     regions:landscapeRegions, // the regions within the image to sample from
-    reducer:ee.Reducer.mean(), // the reducer here we compute mean reflectance              //
+    reducer:ee.Reducer.mean(), // the reducer here we compute mean reflectance
     seriesProperty: 'label', // use the labelproperty we defined earlier as the legend
     xLabels: wavelengths}) // use wavelength value instead of B1--B7
     .setOptions(plotOptions);
@@ -159,7 +159,7 @@ var landscapeRegions = ee.FeatureCollection([water,urban,forest]);
 var reflectanceChart = ui.Chart.image.regions({
     image:bandsToPlot, // the image where to grab the reflectance data from
     regions:landscapeRegions, // the regions within the image to sample from
-    reducer:ee.Reducer.mean(), // the reducer here we compute mean reflectance              //
+    reducer:ee.Reducer.mean(), // the reducer here we compute mean reflectance 
     seriesProperty: 'label'}); // use the labelproperty we defined earlier as the legend
 
 // Now print the chart. You need to print to actually see the chart
@@ -186,7 +186,7 @@ var plotOptions = {
 var reflectanceChart1 = ui.Chart.image.regions({
     image:bandsToPlot, // the image where to grab the reflectance data from
     regions:landscapeRegions, // the regions within the image to sample from
-    reducer:ee.Reducer.mean(), // the reducer here we compute mean reflectance              //
+    reducer:ee.Reducer.mean(), // the reducer here we compute mean reflectance
     seriesProperty: 'label', // use the labelproperty we defined earlier as the legend
     xLabels: wavelengths}) // use wavelength value instead of B1--B7
     .setOptions(plotOptions);
