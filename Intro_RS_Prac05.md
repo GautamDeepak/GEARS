@@ -1,7 +1,7 @@
 ![Shaun Levick](Logo3.png)
 
 # Introductory Remote Sensing (ENV202/502)
-Lab 5 - Image Classification - part 2
+Lab 5 - Image classification - part 2: validation and accuracy assessment
 --------------
 
 ### Acknowledgments
@@ -24,7 +24,7 @@ Google Earth Engine uses the JavaScript programming language. We will cover the 
 ### Objective
 
 
-The objective of this lab is to further your understanding of the image classification process, and improve the classification from last week.
+The objective of this lab is to further your understanding of the image classification process, improve the classification from last week, and learn how to evaluate image classification results and conduct an accuracy assessment using independent validation data.
 
 ----------
 
