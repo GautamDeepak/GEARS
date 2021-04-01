@@ -1,7 +1,6 @@
 ![Shaun Levick](Logo3.png)
-GEARS - Geospatial Ecology and Remote Sensing lab - https://www.gears-lab.com
 
-# Introduction to Remote Sensing of the Environment
+# Introductory Remote Sensing (ENV202/502)
 Lab 5 - Image Classification - part 2
 --------------
 
@@ -14,19 +13,11 @@ Lab 5 - Image Classification - part 2
 ### Prerequisites
 -------------
 
-Completion of this lab exercise requires use of the Google Chrome browser and a Google Earth Engine account. If you have not yet signed up - please do so now in a new tab:
+Completion of this Prac exercise requires the use of the Google Chrome browser and a Google Earth Engine account. If you have not yet signed up - please do so now in a new tab: [Earth Engine account registration](https://signup.earthengine.google.com/)
 
-[Earth Engine account registration](https://signup.earthengine.google.com/)
+Once registered you can access the Earth Engine environment here: https://code.earthengine.google.com
 
-Once registered you can access the Earth Engine environment here:
-https://code.earthengine.google.com
-
-This lab follows on from others in this series:
-
-[Lab 1](https://github.com/geospatialeco/GEARS/blob/master/Intro_RS_Lab1.md) -
-[Lab 2](https://github.com/geospatialeco/GEARS/blob/master/Intro_RS_Lab2.md) -
-[Lab 3](https://github.com/geospatialeco/GEARS/blob/master/Intro_RS_Lab3.md) -
-[Lab 4](https://github.com/geospatialeco/GEARS/blob/master/Intro_RS_Lab4.md)
+Google Earth Engine uses the JavaScript programming language. We will cover the very basics of this language during this course. If you would like more detail you can read through the introduction provided here: [JavaScript background](https://developers.google.com/earth-engine/tutorials/tutorial_js_01)
 
 ------------------------------------------------------------------------
 
@@ -39,7 +30,7 @@ The objective of this lab is to further your understanding of the image classifi
 
 ## Load up your previous classification from last week
 
-Open you script from last week's lab. If you did not save it, repeat the steps from [Lab 4](https://github.com/geospatialeco/GEARS/blob/master/Intro_RS_Lab4.md) and be sure to save it this time.
+Open you script from last week's lab. If you did not save it, repeat the steps from [Lab 4](https://github.com/GautamDeepak/Intro_RS/edit/master/Intro_RS_Prac04.md) and be sure to save it this time.
 
 I have provided the full code below, but remember that you need to manually collect the training data and assign landcover properties.
 
