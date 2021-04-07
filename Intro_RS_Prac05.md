@@ -49,7 +49,7 @@ Map.addLayer(anImage, {bands: ['B4', 'B3', 'B2'],min:0, max: 3000, gamma:1.4}, '
 
 ![Figure 1. True-color image](Prac5/tureColor.PNG)
 
-##2. Define geometry regions to plot the reflectance curve
+## 2. Define geometry regions to plot the reflectance curve
 
 1. First we will specify which region (within the image) to grab the spectral reflectance curve from. Click on ‘new layer’ under the Geometry tool and create new polygons using the rectangle tool for three classes (Water, Urban, Forest). Rename each of the geometry classes accordingly.
 
@@ -67,7 +67,7 @@ var bandsToPlot = anImage.select('B[1-7]'); // we are creating new image with on
 var landscapeRegions = ee.FeatureCollection([water,urban,forest]);
 ```
 
-##3. Charting of the spectral reflectance curve
+## 3. Charting of the spectral reflectance curve
 
 1. Now we can create a chart variable and then print the chart to the console. We use the image.regions function to summarise by class region, and the ee.Reducer.mean() function to obtain the mean reflectance value for each class for each band.
 
