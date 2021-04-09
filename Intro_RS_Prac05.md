@@ -62,8 +62,9 @@ Map.addLayer(anImage, {bands: ['B4', 'B3', 'B2'],min:0, max: 3000, gamma:1.4}, '
 3. Now specify the bands that you want to use to construct the spectral reflectance curve. You can use all the available bands or use selected bands. In the below script, I used the bands 1-7 which include the Costal blue, blue, green, red, NIR, SWIR1 and SWIR2.
 
 ```JavaScript
-//Choose bands that you want to include in the spectral reflectance curve and define feature collection to use
-var bandsToPlot = anImage.select('B[1-7]'); // we are creating new image with only these bands
+//Choose bands that you want to include in the spectral reflectance curve 
+var bandsToPlot = anImage.select('B[1-7]'); 
+// Define the feature collection to use to extract the spectral reflectance curve
 var landscapeRegions = ee.FeatureCollection([water,urban,forest]);
 ```
 
@@ -152,20 +153,21 @@ var anImage = ee.Image(ee.ImageCollection('LANDSAT/LC08/C01/T1_SR')
 //Add true-clour composite to map
 Map.addLayer(anImage, {bands: ['B4', 'B3', 'B2'],min:0, max: 3000, gamma:1.4}, 'True colour image');
 
-//Choose bands that you want to include in the spectral reflectance curve and define feature collection to use
-var bandsToPlot = anImage.select('B[1-7]'); // we are creating new image with only these bands
+//Choose bands that you want to include in the spectral reflectance curve 
+var bandsToPlot = anImage.select('B[1-7]'); 
+// Define the feature collection to use to extract the spectral reflectance curve
 var landscapeRegions = ee.FeatureCollection([water,urban,forest]);
-
 
 // Create the reflectance chart
 var reflectanceChart = ui.Chart.image.regions({
     image:bandsToPlot, // the image where to grab the reflectance data from
     regions:landscapeRegions, // the regions within the image to sample from
-    reducer:ee.Reducer.mean(), // the reducer here we compute mean reflectance 
+    reducer:ee.Reducer.mean(), // the reducer here we compute mean reflectance
     seriesProperty: 'label'}); // use the labelproperty we defined earlier as the legend
 
 // Now print the chart. You need to print to actually see the chart
 print(reflectanceChart);
+
 
 // Define a list of Landsat-8 wavelengths for X-axis labels.
 var wavelengths = [443, 482, 562, 655, 865, 1609, 2201];
