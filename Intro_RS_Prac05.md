@@ -139,7 +139,7 @@ print(reflectanceChart1);
 
 - Try and plot spectra for a Sentinel-2 image, instead of a Landsat-8 one.
 - Experiment with additional landcover classes 
-- After completing this prac, you are ready to attempt Assessment#2
+- After completing this prac, you are ready to attempt Assessment#2. See [here](https://developers.google.com/earth-engine/guides/geometries) or todays lecture to learn how to use coordinates to create your AOI.
 
 ## 5. Complete script
 ```JavaScript
