@@ -47,7 +47,7 @@ Map.addLayer(anImage, {bands: ['B4', 'B3', 'B2'],min:0, max: 3000, gamma:1.4}, '
 
 ```
 
-![Figure 1. True-color image](Prac5/tureColor.png)
+![Figure 1. True-color image](Prac5/trueColor.png)
 
 ## 2. Define geometry regions to plot the reflectance curve
 
