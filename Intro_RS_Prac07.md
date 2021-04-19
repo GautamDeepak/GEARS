@@ -32,7 +32,7 @@ The objective of this lab is to learn how to evaluate image classification resul
 
 1. Open up Earth Engine and type "Sentinel-1" into the search bar. Click on the Sentinel-1 result and read through the background information on the satellite and image properties.
 
-![Figure 1. Search for Sentinel-1 data](Prac7/search.PNG)
+![Figure 1. Search for Sentinel-1 data](Prac7/search.png)
 
 ![Figure 2. Sentinel-1 information](Prac7/info.PNG)
 
