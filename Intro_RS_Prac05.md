@@ -1,7 +1,7 @@
 ![Shaun Levick](Logo3.png)
 
 # Introductory Remote Sensing (ENV202/502)
-Lab 5 - Plotting spectral response curves
+Prac 5 - Plotting spectral response curves
 --------------
 
 ### Acknowledgments
@@ -24,7 +24,7 @@ Google Earth Engine uses the JavaScript programming language. We will cover the 
 ### Objective
 
 
-The objective of this lab is to further your understanding of spectral responses and develop skills in using the Charting functions in Earth Engine (JavaScript).
+The objective of this Prac is to further your understanding of spectral responses and develop skills in using the Charting functions in Earth Engine (JavaScript).
 
 ----------
 
