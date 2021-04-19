@@ -134,6 +134,12 @@ Map.addLayer(VV1.addBands(VV2).addBands(VV3), {min: -12, max: -7}, 'Season compo
 13. Experiment with mixing VV and VH in a RGB composite
 14. Think about how this information differs to the optical data you have used so far, and how it could compliment it.
 -------
+## X. Complete script
+
+```JavaScript
+
+```
+
 
 ### Thank you
 
