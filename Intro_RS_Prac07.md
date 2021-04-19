@@ -1,7 +1,7 @@
 ![Shaun Levick](Logo3.png)
 
 # Introductory Remote Sensing (ENV202/502)
-Lab 5 - Plotting spectral response curves
+Prac 8 - Working with SAR data in Google Earth Engine
 --------------
 
 ### Acknowledgments
