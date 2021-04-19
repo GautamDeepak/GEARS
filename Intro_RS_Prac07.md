@@ -32,14 +32,14 @@ The objective of this lab is to learn how to evaluate image classification resul
 
 1. Open up Earth Engine and type "Sentinel-1" into the search bar. Click on the Sentinel-1 result and read through the background information on the satellite and image properties.
 
-![Figure 1. Search for Sentinel-1 data](Prac7/search.png)
+![Figure 1. Search for Sentinel-1 data](Prac7/search.PNG)
 
-![Figure 2. Sentinel-1 information](Prac7/info.png)
+![Figure 2. Sentinel-1 information](Prac7/info.PNG)
 
 2. Sentinel-1 has different polarisation options - remember that "VV" means vertically polarised signal transmitted out and vertically polarised signal received, whereas VH refers to vertically polarised signal transmitted out, and horizontally polarised signal is received.
 3. First up we need to filter the Sentinel-1 image collection (COPERNICUS/S1_GRD), using the script below. Be sure to use the geometry tool to create a point geometry over your region of interest (we will use the Tully region of north Queensland, Australia, as an example. Tully has lots of sugercane and banana plantation) and rename it "roi".
 
-![Figure 3. Tully](Prac7/roi.png)
+![Figure 3. Tully](Prac7/roi.PNG)
 
 ```JavaScript
 // Filter the collection for the VV product from the descending track
@@ -73,7 +73,7 @@ print(collectionVH);
 
 4. Navigate to the console and have a look at the information you printed. Using the drop down arrows you can assess how many images are present in teh collection for your region of interest.
 
-![Figure 4. Console](Prac7/console.png)
+![Figure 4. Console](Prac7/console.PNG)
 
 
 5. Centre the map view over your region of interest. Note this script will always put ROI in the centre of your display. Play with the number "13" to see what happens. The zoom scale ranges from 1 to 22.
@@ -96,7 +96,7 @@ var medianVV = collectionVV.median();
 Map.addLayer(VV, {min: -14, max: -7}, 'VV');
 ```
 
-![Figure 6. Mapping VV](Prac7/VV.png)
+![Figure 6. Mapping VV](Prac7/VV.PNG)
 
 
 8. Explore the image and examine which landscape features have high backscatter intensity (white), and which have low intensity (black).
@@ -108,7 +108,7 @@ Map.addLayer(medianVH, {min: -20, max: -7}, 'VH - median');
 
 ```
 
-![Figure 7. Mapping VH](Prac7/VH.png)
+![Figure 7. Mapping VH](Prac7/VH.PNG)
 
 10. Explore how VV and VH differ in their sensitivity to different land surfaces
 
@@ -124,7 +124,7 @@ var winter = ee.Image(collectionVV.filterDate('2020-06-01', '2020-08-31').median
 Map.addLayer(summer.addBands(autumn).addBands(winter), {min: -12, max: -7}, 'Season composite');
 ```
 
-![Figure 9. Temporal RGB composite](Prac7/RGB.png)
+![Figure 9. Temporal RGB composite](Prac7/RGB.PNG)
 
 12. Now try the same for VH
 13. Experiment with mixing VV and VH in a RGB composite
