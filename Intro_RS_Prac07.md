@@ -130,7 +130,7 @@ Map.addLayer(summer.addBands(autumn).addBands(winter), {min: -12, max: -7}, 'Sea
 13. Experiment with mixing VV and VH in a RGB composite
 14. Think about how this information differs to the optical data you have used so far, and how it could compliment it.
 
-## X. Complete script
+## 2. Complete script
 
 ```JavaScript
 // Filter the collection for the VV product from the descending track
