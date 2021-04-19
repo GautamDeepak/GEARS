@@ -145,8 +145,7 @@ print('Validation error matrix: ', testAccuracy);
 
 ```
 5. EE has builtin functions to compute accuracies such as User's and Producer's accuracy, kappa coefficient. Run the script to compute the accuracies.
-```
-JavaScript
+```JavaScript
 
 //Print the overall accuracy to the console
 print('Validation overall accuracy: ', testAccuracy.accuracy());
@@ -181,8 +180,7 @@ Now you have the base accuracy assessment numbers. Are you happy with the classi
 
 ## 5. Complete script
 
-```
-JavaScript
+```JavaScript
 
 // Lets filter the image collection to get a single image  
 var anImage = L8
