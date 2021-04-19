@@ -32,54 +32,62 @@ The objective of this lab is to learn how to evaluate image classification resul
 
 1. Open up Earth Engine and type "Sentinel-1" into the search bar. Click on the Sentinel-1 result and read through the background information on the satellite and image properties.
 
-![Figure 1. Search for Sentinel-1 data](Prac8/l8_sent1.png)
+![Figure 1. Search for Sentinel-1 data](Prac7/search.png)
 
-![Figure 2. Sentinel-1 information](Prac8/l8_sentinfo.png)
+![Figure 2. Sentinel-1 information](Prac7/info.png)
 
 2. Sentinel-1 has different polarisation options - remember that "VV" means vertically polarised signal transmitted out and vertically polarised signal received, whereas VH refers to vertically polarised signal transmitted out, and horizontally polarised signal is received.
-3. First up we need to filter the Sentinel-1 image collection (COPERNICUS/S1_GRD), using the script below. Be sure to use the geometry tool to create a point geometry over your region of interest (we will use the Tully region of north Queensland, Australia, as an example) and rename it "roi".
+3. First up we need to filter the Sentinel-1 image collection (COPERNICUS/S1_GRD), using the script below. Be sure to use the geometry tool to create a point geometry over your region of interest (we will use the Tully region of north Queensland, Australia, as an example. Tully has lots of sugercane and banana plantation) and rename it "roi".
 
-![Figure 3. Tully](Prac8/l8_tully.png)
+![Figure 3. Tully](Prac7/roi.png)
 
 ```JavaScript
 // Filter the collection for the VV product from the descending track
 var collectionVV = ee.ImageCollection('COPERNICUS/S1_GRD')
+	// Filter for the swath mode that we want
     .filter(ee.Filter.eq('instrumentMode', 'IW'))
+	// filter for the polarisation that we want
     .filter(ee.Filter.listContains('transmitterReceiverPolarisation', 'VV'))
+	// We are choosing the descending orbit here
     .filter(ee.Filter.eq('orbitProperties_pass', 'DESCENDING'))
+	// filter by the spatial location
     .filterBounds(roi)
+	// select for the VV mode (vertical transmit vertical received)
     .select(['VV']);
 print(collectionVV);
 
 // Filter the collection for the VH product from the descending track
 var collectionVH = ee.ImageCollection('COPERNICUS/S1_GRD')
+	// Filter for the swath mode that we want
     .filter(ee.Filter.eq('instrumentMode', 'IW'))
-    .filter(ee.Filter.listContains('transmitterReceiverPolarisation', 'VH'))
+	// filter for the polarisation that we want
+    .filter(ee.Filter.listContains('transmitterReceiverPolarisation', 'VV'))
+	// We are choosing the descending orbit here
     .filter(ee.Filter.eq('orbitProperties_pass', 'DESCENDING'))
+	// filter by the spatial location
     .filterBounds(roi)
+	// select for the VH mode (vertical transmit horizontal received)
     .select(['VH']);
 print(collectionVH);
 ```
 
 4. Navigate to the console and have a look at the information you printed. Using the drop down arrows you can assess how many images are present in teh collection for your region of interest.
 
-![Figure 4. Console](Prac8/l8_console.png)
+![Figure 4. Console](Prac7/console.png)
 
 
-5. Centre the map view over your region of interest
+5. Centre the map view over your region of interest. Note this script will always put ROI in the centre of your display. Play with the number "13" to see what happens. The zoom scale ranges from 1 to 22.
 
 ```JavaScript
 //Let's centre the map view over our ROI
 Map.centerObject(roi, 13);
 ```
 
-![Figure 5. Center view](Prac8/l8_centre.png)
-
-
 6. Use the median reducer to obtain the median pixel value across the all years for each pixel.
 
 ```JavaScript
-var VV = collectionVV.median();
+// compute the median VV values for each pixels of all the images
+var medianVV = collectionVV.median();
 ```
 7. Plot the median pixel values to the map view. Adjust the min and max visualisation parameters according to your chosen scene - us the inspectors to help you establish the value range.
 
@@ -88,34 +96,35 @@ var VV = collectionVV.median();
 Map.addLayer(VV, {min: -14, max: -7}, 'VV');
 ```
 
-![Figure 6. Mapping VV](Prac8/l8_VV.png)
+![Figure 6. Mapping VV](Prac7/VV.png)
 
 
 8. Explore the image and examine which landscape features have high backscatter intensity (white), and which have low intensity (black).
 9. Now derive the the VH median layer, and map it
 ```JavaScript
-//Calculate the VH layer and add it
-var VH = collectionVH.median();
-Map.addLayer(VH, {min: -20, max: -7}, 'VH');
+//Calculate the median VH values for each pixels from all the images 
+var medianVH = collectionVH.median();
+Map.addLayer(medianVH, {min: -20, max: -7}, 'VH - median');
+
 ```
 
-![Figure 7. Mapping VH](Prac8/l8_VH.png)
+![Figure 7. Mapping VH](Prac7/VH.png)
 
 10. Explore how VV and VH differ in their sensitivity to different land surfaces
 
 11. Next we will experiment with making an RGB composite from the SAR data. To do this we need to create three layers that we can place into the Red, Green, and Blue channels.
 
 ```JavaScript
-// Create a 3 band stack by selecting from different periods (months)
-var VV1 = ee.Image(collectionVV.filterDate('2018-01-01', '2018-04-30').median());
-var VV2 = ee.Image(collectionVV.filterDate('2018-05-01', '2018-08-31').median());
-var VV3 = ee.Image(collectionVV.filterDate('2018-09-01', '2018-12-31').median());
+// Create a 3 band layers by selecting from different periods (months)
+var summer = ee.Image(collectionVV.filterDate('2019-12-01', '2020-02-28').median());
+var autumn = ee.Image(collectionVV.filterDate('2020-03-01', '2020-05-30').median());
+var winter = ee.Image(collectionVV.filterDate('2020-06-01', '2020-08-31').median());
 
-//Add to map
-Map.addLayer(VV1.addBands(VV2).addBands(VV3), {min: -12, max: -7}, 'Season composite');
+//Add the temporal composite to the map
+Map.addLayer(summer.addBands(autumn).addBands(winter), {min: -12, max: -7}, 'Season composite');
 ```
 
-![Figure 9. Temporal RGB composite](Prac8/l8_rgb.png)
+![Figure 9. Temporal RGB composite](Prac7/RGB.png)
 
 12. Now try the same for VH
 13. Experiment with mixing VV and VH in a RGB composite
@@ -124,6 +133,54 @@ Map.addLayer(VV1.addBands(VV2).addBands(VV3), {min: -12, max: -7}, 'Season compo
 ## X. Complete script
 
 ```JavaScript
+// Filter the collection for the VV product from the descending track
+var collectionVV = ee.ImageCollection('COPERNICUS/S1_GRD')
+	// Filter for the swath mode that we want
+    .filter(ee.Filter.eq('instrumentMode', 'IW'))
+	// filter for the polarisation that we want
+    .filter(ee.Filter.listContains('transmitterReceiverPolarisation', 'VV'))
+	// We are choosing the descending orbit here
+    .filter(ee.Filter.eq('orbitProperties_pass', 'DESCENDING'))
+	// filter by the spatial location
+    .filterBounds(roi)
+	// select for the VV mode (vertical transmit vertical received)
+    .select(['VV']);
+print(collectionVV);
+
+// Filter the collection for the VH product from the descending track
+var collectionVH = ee.ImageCollection('COPERNICUS/S1_GRD')
+	// Filter for the swath mode that we want
+    .filter(ee.Filter.eq('instrumentMode', 'IW'))
+	// filter for the polarisation that we want
+    .filter(ee.Filter.listContains('transmitterReceiverPolarisation', 'VV'))
+	// We are choosing the descending orbit here
+    .filter(ee.Filter.eq('orbitProperties_pass', 'DESCENDING'))
+	// filter by the spatial location
+    .filterBounds(roi)
+	// select for the VH mode (vertical transmit horizontal received)
+    .select(['VH']);
+print(collectionVH);
+
+//Let's centre the map view over our ROI
+Map.centerObject(roi, 13);
+
+// compute the median values for each pixels of all the images
+var medianVV = collectionVV.median();
+
+// Adding the median VV layer to the map
+Map.addLayer(medianVV, {min: -14, max: -7}, 'VV - median');
+
+//Calculate the median VH values for each pixels from all the images 
+var medianVH = collectionVH.median();
+Map.addLayer(medianVH, {min: -20, max: -7}, 'VH - median');
+
+// Create a 3 band layers by selecting from different periods (months)
+var summer = ee.Image(collectionVV.filterDate('2019-12-01', '2020-2-28').median());
+var autumn = ee.Image(collectionVV.filterDate('2020-03-01', '2020-05-30').median());
+var winter = ee.Image(collectionVV.filterDate('2020-06-01', '2020-08-31').median());
+
+//Add the temporal composite to the map
+Map.addLayer(summer.addBands(autumn).addBands(winter), {min: -12, max: -7}, 'Season composite');
 
 ```
 
