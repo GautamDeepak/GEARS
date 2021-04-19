@@ -183,6 +183,7 @@ Now you have the base accuracy assessment numbers. Are you happy with the classi
 
 ```
 JavaScript
+
 // Lets filter the image collection to get a single image  
 var anImage = L8
   // L8 is an image collection so lets  include a geographic filter to narrow the search to images at the location of our point
@@ -256,6 +257,7 @@ print('Validation overall accuracy: ', testAccuracy.producersAccuracy());
 
 //Print the kappa coefficient accuracy to the console
 print('Validation overall accuracy: ', testAccuracy.kappa());
+
 ```
 -------
 ### Thank you
