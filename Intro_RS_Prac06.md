@@ -1,4 +1,4 @@
-![Shaun Levick](Logo3.png)
+![Shaun Levick](Logo3.PNG)
 
 # Introductory Remote Sensing (ENV202/502)
 Prac 6 - Image classification - part 2: validation and accuracy assessment
@@ -85,25 +85,25 @@ Map.addLayer(classified, {min: 0, max: 4, palette: ['red', 'blue', 'darkgreen','
 ```
 3. Run the script to get the classified map
 
-![Figure 1. Classified map](Prac6/classified.png)
+![Figure 1. Classified map](Prac6/classified.PNG)
 
 ##4. Using polygons instead of points to sample the training data.
 
 1. Delete all the training datasets 
 
-![Figure 1. Classified map](Prac6/delete.png)
+![Figure 1. Classified map](Prac6/delete.PNG)
 
 2. Following the steps we learnt in Prac04, redefine the training data for classification but using a polygon. Note you can sample more than one polygon for a landcover class. Start with urban landcover - do not exceed 5000 pixels. 
-![Figure 1. Classified map](Prac6/urbanpolygon.png)
+![Figure 1. Classified map](Prac6/urbanpolygon.PNG)
 
 3. Follow the steps we learnt in Prac04 to configure the training data.
-![Figure 1. Classified map](Prac6/configure.png)
+![Figure 1. Classified map](Prac6/configure.PNG)
 
 4. Repeat the step 2 and 3 for all the landcover types you want to include. Let's add water, forest, agriculture, bareland – same order as Prac04
-![Figure 1. Classified map](Prac6/allclass.png)
+![Figure 1. Classified map](Prac6/allclass.PNG)
 
 5. Run the script to get a classified map. Here, the classifier used polygons instead of points for training. Compare this classification with the earlier classification where points were used for training. Do you notice an improvement in your classified map? 
-![Figure 1. Classified map](Prac6/classified2.png)
+![Figure 1. Classified map](Prac6/classified2.PNG)
 
 ##5. Classification validation
 
