@@ -85,7 +85,7 @@ Map.addLayer(classified, {min: 0, max: 4, palette: ['red', 'blue', 'darkgreen','
 ```
 3. Run the script to get the classified map
 
-![Figure 1. Classified map](Prac6/classified.PNG)
+[Figure 1. Classified map](Prac6/classified.PNG)
 
 ## 2. Use polygons instead of points to sample the training data.
 
