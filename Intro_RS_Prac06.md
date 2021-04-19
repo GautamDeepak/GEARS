@@ -87,7 +87,7 @@ Map.addLayer(classified, {min: 0, max: 4, palette: ['red', 'blue', 'darkgreen','
 
 ![Figure 1. Classified map](Prac6/classified.PNG)
 
-##4. Using polygons instead of points to sample the training data.
+## 4. Using polygons instead of points to sample the training data.
 
 1. Delete all the training datasets 
 
@@ -105,7 +105,7 @@ Map.addLayer(classified, {min: 0, max: 4, palette: ['red', 'blue', 'darkgreen','
 5. Run the script to get a classified map. Here, the classifier used polygons instead of points for training. Compare this classification with the earlier classification where points were used for training. Do you notice an improvement in your classified map? 
 ![Figure 1. Classified map](Prac6/classified2.PNG)
 
-##5. Classification validation
+## 5. Classification validation
 
 1. Use the above procedure but now sample the validation dataset. 
   - do this in the same way you collected training data
