@@ -108,7 +108,7 @@ Map.addLayer(classified, {min: 0, max: 4, palette: ['red', 'blue', 'darkgreen','
 5. Run the script to get a classified map. Here, the classifier used polygons instead of points for training. Compare this classification with the earlier classification where points were used for training. Do you notice an improvement in your classified map? 
 ![Figure 1. Classified map](Prac6/classifiedpolygon.PNG)
 
-## 5. Classification validation
+## 3. Classification validation
 
 1. Use the above procedure but now sample the validation dataset. 
   - do this in the same way you collected training data
@@ -163,7 +163,7 @@ print('Validation overall accuracy: ', testAccuracy.kappa());
 
 6. Think about how the classification went and what all these accuracies number mean.
 
-## 6. Improving the Classification
+## 4. Improving the Classification
 
 Now you have the base accuracy assessment numbers. Are you happy with the classification result? How can we improve it and what are our options? Below are a few options for you to explore. Try them and if you are stuck, get back to me next class.
 
@@ -179,7 +179,7 @@ Now you have the base accuracy assessment numbers. Are you happy with the classi
 
 5. Changing the input image: - We used a winter scene from Landsat-8. We could try a summer scene from Landsat-8, or switch over to a Sentinel-2 image.
 
-##7. Complete script
+## 5. Complete script
 
 ```
 JavaScript
