@@ -1,144 +1,103 @@
 ![Shaun Levick](Logo3.png)
-GEARS - Geospatial Ecology and Remote Sensing lab - https://www.gears-lab.com
 
-# Introduction to Remote Sensing of the Environment
-Lab 8 - Working with SAR data in Google Earth Engine
+# Introductory Remote Sensing (ENV202/502)
+Prac 8 - Working with Terrestrial Laser Scanning (TLS) data in CloudCompare
+
 --------------
-
-### Acknowledgments
-- Google Earth Engine Team
-- Google Earth Engine Developers group
-
-------
-
 ### Prerequisites
 -------------
 
-Completion of this lab exercise requires use of the Google Chrome browser and a Google Earth Engine account. If you have not yet signed up - please do so now in a new tab:
-
-[Earth Engine account registration](https://signup.earthengine.google.com/)
-
-Once registered you can access the Earth Engine environment here:
-https://code.earthengine.google.com
-
-This lab follows on from others in this series:
-
-[Lab 1](https://github.com/geospatialeco/GEARS/blob/master/Intro_RS_Lab1.md) -
-[Lab 2](https://github.com/geospatialeco/GEARS/blob/master/Intro_RS_Lab2.md) -
-[Lab 3](https://github.com/geospatialeco/GEARS/blob/master/Intro_RS_Lab3.md) -
-[Lab 4](https://github.com/geospatialeco/GEARS/blob/master/Intro_RS_Lab4.md) -
-[Lab 5](https://github.com/geospatialeco/GEARS/blob/master/Intro_RS_Lab5.md) -
-[Lab 6](https://github.com/geospatialeco/GEARS/blob/master/Intro_RS_Lab6.md) -
-[Lab 7](https://github.com/geospatialeco/GEARS/blob/master/Intro_RS_Lab7.md)
-
+Completion of this lab exercise requires use of the CloudCompare software package. CloudCompare is a powerful package for visualising and processing point-clouds, and best of all is open-access. You can download the latest stable release matching your operating system [here](https://www.danielgm.net/cc/).
 
 ------------------------------------------------------------------------
+### Background and objective
 
-### Objective
+The objective of this lab is to familiarise yourself with 3D point cloud data. We will use data coming from the BLK360 laser scanner, which you played with *today*. The data used in the prac was collected on campus in the Boab court. We collected multiple scans with a Leica BLK360 laser scanner, and we will work with some of these scans today.
 
+![Figure 1. Leica BLK360 scanning](Prac9/leica.png)
 
-The objective of this lab is to deepen your understanding of Synthetic Aperture Radar (SAR) data, and learn how to visualise different composites in Google Earth Engine.
+Scan data can be downloaded in .las format here (please note that each file is ~ 1GB):
+
+[Scan 1](https://www.dropbox.com/s/e172wfagzt50qfm/Boab_1.las?dl=0) | [Scan 2](https://www.dropbox.com/s/faa42pr89rdc7g6/Boab_2.las?dl=0) | [Scan 3](https://www.dropbox.com/s/pta1p7h50gta434/Boab_3.las?dl=0)
+
 
 ----------
 
-## Visualising Sentinel-1 data
+## Getting to know CloudCompare
 
-1. Open up Earth Engine and type "Sentinel-1" into the search bar. Click on the Sentinel-1 result and read through the background information on the satellite and image properties.
+1. Launch the CloudCompare application.
 
-![Figure 1. Search for Sentinel-1 data](Prac8/l8_sent1.png)
+![Figure 2. CloudCompare](Prac9/cloudcompare.png)
 
-![Figure 2. Sentinel-1 information](Prac8/l8_sentinfo.png)
+2. Note that your interface might look a bit different to mine if you are on a Windows machine - but don't worry the tools and menus are consistent across platforms.
 
-2. Sentinel-1 has different polarisation options - remember that "VV" means vertically polarised signal transmitted out and vertically polarised signal received, whereas VH refers to vertically polarised signal transmitted out, and horizontally polarised signal is received.
-3. First up we need to filter the Sentinel-1 image collection (COPERNICUS/S1_GRD), using the script below. Be sure to use the geometry tool to create a point geometry over your region of interest (we will use the Tully region of north Queensland, Australia, as an example) and rename it "roi".
+3. Open up the first scan by clicking File>Open, navigate to where you saved the data, and click on Boab_1.las
 
-![Figure 3. Tully](Prac8/l8_tully.png)
+![Figure 3. CloudCompare](Prac9/cc_open.png)
 
-```JavaScript
-// Filter the collection for the VV product from the descending track
-var collectionVV = ee.ImageCollection('COPERNICUS/S1_GRD')
-    .filter(ee.Filter.eq('instrumentMode', 'IW'))
-    .filter(ee.Filter.listContains('transmitterReceiverPolarisation', 'VV'))
-    .filter(ee.Filter.eq('orbitProperties_pass', 'DESCENDING'))
-    .filterBounds(roi)
-    .select(['VV']);
-print(collectionVV);
+4. A window will appear asking if you would like to apply default settings - click Apply
 
-// Filter the collection for the VH product from the descending track
-var collectionVH = ee.ImageCollection('COPERNICUS/S1_GRD')
-    .filter(ee.Filter.eq('instrumentMode', 'IW'))
-    .filter(ee.Filter.listContains('transmitterReceiverPolarisation', 'VH'))
-    .filter(ee.Filter.eq('orbitProperties_pass', 'DESCENDING'))
-    .filterBounds(roi)
-    .select(['VH']);
-print(collectionVH);
-```
+![Figure 4. CloudCompare](Prac9/cc_apply.png)
 
-4. Navigate to the console and have a look at the information you printed. Using the drop down arrows you can assess how many images are present in teh collection for your region of interest.
+5. Another window will appear asking you about coordinate transformations - click Yes
 
-![Figure 4. Console](Prac8/l8_console.png)
+![Figure 5. CloudCompare](Prac9/cc_yes.png)
+
+6. A progress bar should appear showing you how many points are being ingested (28 million in this case) and then the point cloud should appear in the main viewing window as shown below.
+
+![Figure 6. CloudCompare](Prac9/cc_boab1.png)
+
+7. The top-left panel houses the file structure. Click on Bao_1.las and you will see some information appear in the panel below it, and the spatial extent of the file will be highlighted in the main window. In the properties panel (lower left) we can see that the current display options are set to RGB (the Leica BLK360 captures true-colour images in addition to laser data) and that there are 28,846,128 points in this cloud.
+
+![Figure 7. CloudCompare](Prac9/cc_gui.png)
+
+8. Let's zoom in a bit closer to see more detail. Hold your mouse over the main viewing window and use the scroll wheel to zoom in and out.
+
+![Figure 8. CloudCompare](Prac9/cc_zoom.png)
+
+9. As you can see, we are looking down on our scan from above - a bird's eye perspective. The green lawn is clearly visible, and the black dot in the location where the scanner was placed (the scanner does not scan directly beneath itself). See what other features you can identify - the boab trees, building, sun-shades etc.
+
+10. Although this aerial view is interesting, we currently have a 2D view. The reason we use LiDAR is for a 3D perspective - so use your LEFT mouse button to click and tilt the scene. Your RIGHT mouse button will pan the image (up, down, left, right) and the SCROLL WHEEL is for zooming in and out.
+
+![Figure 9. CloudCompare](Prac9/cc_3d.png)
+
+11. The 3D navigation takes a while to get used to. Play around a bit to get the hang of it - and try navigate to the view shown below. You can see your fellow students waiting in the shade on the steps of the Mal Nairn Auditorium.
+
+![Figure 9. CloudCompare](Prac9/cc_mal.png)
+
+12. If at some stage you get lost in the scene, you can use the 1:1 button to return to an aerial view of the full spatial extent.
+
+![Figure 10. CloudCompare](Prac9/cc_lost.png)
+
+13. So far we have been visualising the TLS data in RGB - that is the reflectance values recored by the camera are being given to each point. We see some issue with this in the tips of tree branches whereby the blue colour of the sky is given to the thin branches of the boab trees. This is partly due to the camera resolution being coarser than the laser resolution.
+
+14. Since the TLS is recording distance to objects in x,y and z coordinates, we can also visualise the cloud in terms of elevation. With the file selected in the top-left panel, click Edit>Colours>Height ramp from the main menu.
+
+![Figure 11. CloudCompare](Prac9/cc_heightramp.png)
+
+15. A new window will appear where you can apply a colour scale to the elevation data. Use the default options and click OK
+
+![Figure 12. CloudCompare](Prac9/cc_heightramp2.png)
+
+16. The point cloud will now be rendered with a default colour scale showing lower elevation points in blue and taller points in green.
+
+![Figure 13. CloudCompare](Prac9/cc_heightramp3.png)
+
+17. Zoom in a bit to see the effect in 3D.
+
+![Figure 14. CloudCompare](Prac9/cc_heightramp4.png)
+
+18. To create a more 3D textured look we can use a light shader. Using the main menu navigate to
+Display>Shaders & filters and turn on the E.D.L shader.
+
+![Figure 15. CloudCompare](Prac9/cc_shader.png)
+
+19. This results in a visualisation with more depth/texture.
+
+![Figure 15. CloudCompare](Prac9/cc_shader2.png)
 
 
-5. Centre the map view over your region of interest
 
-```JavaScript
-//Let's centre the map view over our ROI
-Map.centerObject(roi, 13);
-```
-
-![Figure 5. Center view](Prac8/l8_centre.png)
-
-
-6. Use the median reducer to obtain the median pixel value across the all years for each pixel.
-
-```JavaScript
-var VV = collectionVV.median();
-```
-7. Plot the median pixel values to the map view. Adjust the min and max visualisation parameters according to your chosen scene - us the inspectors to help you establish the value range.
-
-```JavaScript
-// Adding the VV layer to the map
-Map.addLayer(VV, {min: -14, max: -7}, 'VV');
-```
-
-![Figure 6. Mapping VV](Prac8/l8_VV.png)
-
-
-8. Explore the image and examine which landscape features have high backscatter intensity (white), and which have low intensity (black).
-9. Now derive the the VH median layer, and map it
-```JavaScript
-//Calculate the VH layer and add it
-var VH = collectionVH.median();
-Map.addLayer(VH, {min: -20, max: -7}, 'VH');
-```
-
-![Figure 7. Mapping VH](Prac8/l8_VH.png)
-
-10. Explore how VV and VH differ in their sensitivity to different land surfaces
-
-11. Next we will experiment with making an RGB composite from the SAR data. To do this we need to create three layers that we can place into the Red, Green, and Blue channels.
-
-```JavaScript
-// Create a 3 band stack by selecting from different periods (months)
-var VV1 = ee.Image(collectionVV.filterDate('2018-01-01', '2018-04-30').median());
-var VV2 = ee.Image(collectionVV.filterDate('2018-05-01', '2018-08-31').median());
-var VV3 = ee.Image(collectionVV.filterDate('2018-09-01', '2018-12-31').median());
-
-//Add to map
-Map.addLayer(VV1.addBands(VV2).addBands(VV3), {min: -12, max: -7}, 'Season composite');
-```
-
-![Figure 9. Temporal RGB composite](Prac8/l8_rgb.png)
-
-12. Now try the same for VH
-13. Experiment with mixing VV and VH in a RGB composite
-14. Think about how this information differs to the optical data you have used so far, and how it could compliment it.
--------
-## X. Complete script
-
-```JavaScript
-
-```
 
 
 ### Thank you
@@ -147,3 +106,4 @@ I hope you found that useful. A recorded video of this tutorial can be found on 
 
 #### Kind regards, Shaun R Levick
 ------
+
