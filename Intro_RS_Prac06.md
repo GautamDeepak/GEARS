@@ -128,7 +128,7 @@ var valLandCoverClasses = vWater.merge(vUrban).merge(vForest).merge(vAgriculture
 
 ```JavaScript
 var validation = classified.sampleRegions({
-  collection: valNames,
+  collection: valLandCoverClasses,
   properties: ['landcover'],
   scale: 30,
 });
@@ -148,16 +148,16 @@ print('Validation error matrix: ', testAccuracy);
 ```JavaScript
 
 //Print the overall accuracy to the console
-print('Validation overall accuracy: ', testAccuracy.accuracy());
+print('Overall accuracy: ', testAccuracy.accuracy());
 
 //Print the user's accuracy to the console
-print('Validation overall accuracy: ', testAccuracy.consumersAccuracy());
+print('Consumer accuracy: ', testAccuracy.consumersAccuracy());
 
 //Print the producers accuracy to the console
-print('Validation overall accuracy: ', testAccuracy.producersAccuracy());
+print('Producer accuracy: ', testAccuracy.producersAccuracy());
 
 //Print the kappa coefficient accuracy to the console
-print('Validation overall accuracy: ', testAccuracy.kappa());
+print('Kappa coefficient: ', testAccuracy.kappa());
 ```
 
 6. Think about how the classification went and what all these accuracies number mean.
