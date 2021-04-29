@@ -61,7 +61,7 @@ var collectionVH = ee.ImageCollection('COPERNICUS/S1_GRD')
 	// Filter for the swath mode that we want
     .filter(ee.Filter.eq('instrumentMode', 'IW'))
 	// filter for the polarisation that we want
-    .filter(ee.Filter.listContains('transmitterReceiverPolarisation', 'VV'))
+    .filter(ee.Filter.listContains('transmitterReceiverPolarisation', 'VH'))
 	// We are choosing the descending orbit here
     .filter(ee.Filter.eq('orbitProperties_pass', 'DESCENDING'))
 	// filter by the spatial location
@@ -93,7 +93,7 @@ var medianVV = collectionVV.median();
 
 ```JavaScript
 // Adding the VV layer to the map
-Map.addLayer(VV, {min: -14, max: -7}, 'VV');
+Map.addLayer(medianVV, {min: -14, max: -7}, 'VV - median');
 ```
 
 ![Figure 6. Mapping VV](Prac7/VV.PNG)
