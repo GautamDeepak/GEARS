@@ -1,7 +1,7 @@
 ![Shaun Levick](Logo3.png)
 
 # Introductory Remote Sensing
-Prac 9 - Working with Terrestrial Laser Scanning (TLS) data in CloudCompare - ecological application
+Prac 10 - Working with Terrestrial Laser Scanning (TLS) data in CloudCompare - ecological application
 --------------
 
 
