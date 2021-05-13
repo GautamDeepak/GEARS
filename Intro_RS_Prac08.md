@@ -106,7 +106,7 @@ Display>Shaders & filters and turn on the E.D.L shader.
 
 ### Thank you
 
-I hope you found that useful. A recorded video of this tutorial can be found on my YouTube Channel's [Introduction to Remote Sensing of the Environment Playlist](https://www.youtube.com/playlist?list=PLf6lu3bePWHDi3-lrSqiyInMGQXM34TSV) and on my lab website [GEARS](https://www.gears-lab.com).
+I hope you found that useful.
 
-#### Kind regards, Shaun R Levick
+#### Kind regards, Shaun R Levick (edit Deepak Gautam)
 ------
