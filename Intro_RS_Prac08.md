@@ -14,17 +14,15 @@ https://www.danielgm.net/cc/
 
 
 ------------------------------------------------------------------------
-
 ### Background and objective
-
 
 The objective of this Prac is to familiarise yourself with 3D point cloud data. We will use data that we collected last week on campus in the Boab court. We collected multiple scans with a Leica BLK360 laser scanner, and we will work with some of these scans today.
 
 ![Figure 1. Leica BLK360 scanning](Prac8/leica.png)
 
-Scan data can be downloaded in .las format here (please note that each file is ~ 1GB):
+Scan data can be downloaded in .las format here (please note that each file is ~ 200 MB):
 
-[Scan 1](https://www.dropbox.com/s/e172wfagzt50qfm/Boab_1.las?dl=0) | [Scan 2](https://www.dropbox.com/s/faa42pr89rdc7g6/Boab_2.las?dl=0) | [Scan 3](https://www.dropbox.com/s/pta1p7h50gta434/Boab_3.las?dl=0)
+[Scan 1](https://charlesdarwinuni-my.sharepoint.com/:u:/g/personal/deepak_gautam_cdu_edu_au/EQLh_JE920JLp_blNIwjTKsBiGV8vVQzt1FMhq6hNhOvAw?e=6X6zBP) | [Scan 2](https://charlesdarwinuni-my.sharepoint.com/:u:/g/personal/deepak_gautam_cdu_edu_au/ERJnGoCYMHVAi85v6DKOWMIB5e4ydWOG5zyEwNVHqeTEFQ?e=4q7Ar5)
 
 
 ----------
