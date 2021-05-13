@@ -1,7 +1,7 @@
 ![Shaun Levick](Logo3.png)
 
 # Introductory Remote Sensing
-Lab 9 - Working with Terrestrial Laser Scanning (TLS) data in CloudCompare continued
+Prac 9 - Working with Terrestrial Laser Scanning (TLS) data in CloudCompare continued
 --------------
 
 ### Prerequisites
@@ -23,20 +23,20 @@ The objective of this Prac is to familiarise yourself with 3D point cloud data. 
 
 Scan data can be downloaded in .las format here (please note that each file is ~ 1GB):
 
-[Scan 1](https://www.dropbox.com/s/e172wfagzt50qfm/Boab_1.las?dl=0) | [Scan 2](https://www.dropbox.com/s/faa42pr89rdc7g6/Boab_2.las?dl=0) | [Scan 3](https://www.dropbox.com/s/pta1p7h50gta434/Boab_3.las?dl=0)
+[Scan 1](https://charlesdarwinuni-my.sharepoint.com/:u:/g/personal/deepak_gautam_cdu_edu_au/EQLh_JE920JLp_blNIwjTKsBiGV8vVQzt1FMhq6hNhOvAw?e=6X6zBP) | [Scan 2](https://charlesdarwinuni-my.sharepoint.com/:u:/g/personal/deepak_gautam_cdu_edu_au/ERJnGoCYMHVAi85v6DKOWMIB5e4ydWOG5zyEwNVHqeTEFQ?e=4q7Ar5)
 
 
 ----------
 
 ## Getting to know CloudCompare
 
-Please see last week's Prac here: [Prac 8](https://github.com/geospatialeco/GEARS/blob/master/Intro_RS_Prac9.md)
+Please see previous Prac here: [Prac 8](https://github.com/GautamDeepak/Intro_RS/blob/master/Intro_RS_Prac08.md)
 
 ## Merging multiple point clouds
 
 1. Open up CloudCompare and choose File>Open from the main menu.
 
-2. Navigate to where the scan data are stored and select Boab_1.las and Boab_3.las before clicking "Open". If you cannot see your files or they are greyed out, make sure you have the file type set to ".las" or "All".
+2. Navigate to where the scan data are stored and select Boab_1.las and Boab_2.las before clicking "Open". If you cannot see your files or they are greyed out, make sure you have the file type set to ".las" or "All".
 
 
 ![Figure 2. Opening two files](Prac9/cc_open2.png)
