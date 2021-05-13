@@ -143,4 +143,4 @@ If DBH wasn't your primary outcome but tree height or stem density - which point
 
 I hope you found this Prac useful.
 
-#### Cheers, Linda Luck
+#### Cheers, Linda Luck (edit Deepak Gautam)
