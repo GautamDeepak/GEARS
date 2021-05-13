@@ -1,107 +1,146 @@
 ![Shaun Levick](Logo3.png)
-GEARS - Geospatial Ecology and Remote Sensing lab - https://www.gears-lab.com
 
-# Introduction to Remote Sensing of the Environment
-Lab 10 - Working with Terrestrial Laser Scanning (TLS) data in CloudCompare continued
+# Introductory Remote Sensing
+Prac 9 - Working with Terrestrial Laser Scanning (TLS) data in CloudCompare - ecological application
 --------------
 
-### Prerequisites
--------------
 
-Completion of this lab exercise requires use of the CloudCompare software package. CloudCompare is a powerful package for visualising and processing point-clouds, and best of all is open-access. You can download the version to match your operating system here:
+### Prerequisites
+---
+Completion of this Prac exercise requires use of the CloudCompare software package. CloudCompare is a powerful package for visualising and processing point-clouds, and best of all is open-access. You can download the version to match your operating system here:
 
 https://www.danielgm.net/cc/
 
-
-------------------------------------------------------------------------
-
+---
 ### Background and objective
+The objective is to apply the skills obtained in Pracs 9 and 10 in an ecological context. In the previous Pracs we were looking at a likely familiar location - the Boab court at CDU Casuarina campus. In this Prac we will look at scans form the Litchfield NP field site you have seen in the Introduction to LiDAR lecture. We will learn how to align and register multiple clouds and explore how point density affects data quality. Now that we know the technology better, we will use this Prac to consider how your study area and your research questoins would guide your sampling strategy.
 
+![Figure 1.](Prac10/Litchie.jpg)
 
-The objective of this lab is to familiarise yourself with 3D point cloud data. We will use data that we collected last week on campus in the Boab court. We collected multiple scans with a Leica BLK360 laser scanner, and we will work with some of these scans today.
+Scan data can be downloaded in .las format here (file size ~ 260 MB):
 
-![Figure 1. Leica BLK360 scanning](Prac10/leica.png)
+[Scan 17](https://charlesdarwinuni-my.sharepoint.com/:u:/g/personal/deepak_gautam_cdu_edu_au/Eb4cPf7Axu1PuuroYNbbHnwBhhbKeW82ZiGiqy_H-WAU3g?e=7A6hCM) | [Scan 26](https://charlesdarwinuni-my.sharepoint.com/:u:/g/personal/deepak_gautam_cdu_edu_au/EQgCygxhuO9Dm12o507ohnsBsWxhNNR_DE9EK3Ioi8FTqw?e=fnZXuF) | [Scan 27](https://charlesdarwinuni-my.sharepoint.com/:u:/g/personal/deepak_gautam_cdu_edu_au/ET4MWF3A2zBEvbLribrtRR4BflebgJAeU2jndeO4F69avA?e=leuzA4)
 
-Scan data can be downloaded in .las format here (please note that each file is ~ 1GB):
-
-[Scan 1](https://www.dropbox.com/s/e172wfagzt50qfm/Boab_1.las?dl=0) | [Scan 2](https://www.dropbox.com/s/faa42pr89rdc7g6/Boab_2.las?dl=0) | [Scan 3](https://www.dropbox.com/s/pta1p7h50gta434/Boab_3.las?dl=0)
-
-
-----------
-
+---
 ## Getting to know CloudCompare
 
-Please see last week's lab here: [Lab 9](https://github.com/geospatialeco/GEARS/blob/master/Intro_RS_Lab9.md)
+Please see Part 1 of this Prac here: [Prac 8](https://github.com/GautamDeepak/Intro_RS/blob/master/Intro_RS_Prac08.md)
 
 ## Merging multiple point clouds
 
-1. Open up CloudCompare and choose File>Open from the main menu.
+Please see Part 2 of this Prac here: [Prac 9](https://github.com/GautamDeepak/Intro_RS/blob/master/Intro_RS_Prac08.md)
 
-2. Navigate to where the scan data are stored and select Boab_1.las and Boab_3.las before clicking "Open". If you cannot see your files or they are greyed out, make sure you have the file type set to ".las" or "All".
+## Ecological application
+**1. Import Scan 17.**
+   * Inspect the cloud
 
+![Figure 2.](Prac10/Display_settings.png)
 
-![Figure 2. Opening two files](Prac10/cc_open2.png)
+Notice how RGB works better for low points. As tree foliage sways in the wind between acquisition of the RGB image and the point cloud we often get a beautiful sky blue assigned to our tree tops. This scanner is quipped with an RGB camera as it was designed to scan buildings. Knowing its limitations in the field, how could this feature be useful for environmental studies?
 
-3. Click "Apply to all" and "Yes to all" when the two dialogue boxes pop up.
+**2. Explore Display settings.** 
+  * Toggle the EDL filter *(Display -> Shaders & Filters -> EDL filter)*
+  * Adjust point size (hover mouse in top left corner of the screen to show menu)
 
-4. Once the two files have loaded, you will see that they are not correctly aligned.
+![Figure 3.](Prac10/Default_point_size.png)
 
-![Figure 3. Opening two files](Prac10/cc_overlap.png)
+Working with LiDAR data, different settings will be useful for different purposes. During this prac you can adjust display settings to your personal preference.
 
-5. In fact, if you zoom in closer (using the mouse wheel), you will see that they are positioned exactly on top of each other (even though they were collected ~ 10m apart).
+**Fun fact:** Next to the scan point in the centre you will see a termite mound built up on a tree trunk. After this scan was taken, extensive areas of Litchfield NP were subject to bushfires during the 2019 dry season. 
 
-![Figure 4. Opening two files](Prac10/cc_overlap_zoom.png)
+![Figure 4.](Prac10/Termite_mound.png)
 
-6. This issues occurs because the scans are in the scanners own coordinated system (SOC) and not in a geographic coordinate system (the BLK360 lacks a GPS). The origin of both scans is 0,0,0 (x,y,z) - every point is relative to the scanner itself.
+Here is a photo taken this year during a repeat scan from the same location. At this stage only a small piece of charcoaled timber remains of this large tree. Why was this tree consumed by the fire while the one next to it is still standing? Could the presence of a termite mound indicate extensive hollowing and therefore susceptibility to fire damage?
 
-7. We will align these two scans using a combination of manual translation (rough positioning) and an automated computer algorithm called Iterative Closest Point (ICP) for fine tuning.
+![Figure 5.](Prac10/Termite_mound2.jpg)
 
-8. Before starting with this, let us map both clouds according to an elevation colour scale (height ramp) - using the default scale for blue to green. Be sure to select both clouds before applying the colour ramp.
+Consecutive LiDAR scans can be useful for quantifying change over time in wooded systems. In this example we can record loss of large trees and start forming ideas about environmental factors driving this loss that can then be investigated. Other applications include quantification of tree growth or the impact of fire events on the understory. Can you think of other ways in which this amazing data could be used?
 
-![Figure 5. Two file colour ramp](Prac10/cc_dual_hr.png)
+**3. Import Scan 26 and adjust display settings.**
+   * Select point cloud in top left panel
+   * Change colour to height ramp *(Edit -> Colours -> Height ramp)*
+   * Adjust point size and shading to what works best for you (e.g. I prefer point size 1 and no shading)
 
-![Figure 6. Two file colour ramp](Prac10/cc_dual_hr2.png)
+![Figure 6.](Prac10/Overlap.png)
 
+CloudCompare imports the point clouds on top of each other because they are not georeferenced. This is because, unlike other scanners, the Leica BLK360 does not have an inbuilt positioning system. How would this affect your field protocol? 
 
-9. Next select only the Boab_3.las file, and choose the "Translate" tool from either the main Menu or from the icon in the toolbar.
+**4. Configure the Translate and Rotate tool.**
+   * Select Scan 26
+   * Select Translate/ Rotate tool
+   * In the tool deselect Tz
+   * From the Rotation drop-down menu select Z
 
-![Figure 7. Translate](Prac10/cc_translate.png)
+![Figure 7.](Prac10/Rotate_tool.png)
 
+These settings will allow you to move the point cloud along the x/y-axes and rotate it along the z-axis. Feel free to play with the settings and see what else the tool can do - there's always the undo button.
 
-10. You will see a new toolbar appear in the top-right corner of the main window, and small white text in the top-centre of the main window will remind you that the tool is active.
+**5. Align point clouds.**
+   * Use your **secondary** mouse button to *move* and your **primary** mouse button to *rotate*
+   * Click the green tick in the Translate/ Rotate tool to save changes
+   * Change the viewing angle and repeat the process for further adjustment
 
-![Figure 8. Translate](Prac10/cc_translate2.png)
+![Figure 8.](Prac10/Aligned.png)
 
-11. Before going any further we will change the rotation axis from xyz to z only in the translation dialogue window. This will ensure that the point cloud can only be moved (left/right, up/down) or rotated around the z x-axis, preventing any unwanted tilting.
+It seems impossible to perfectly line up every last little branch. Trees will sway in the breeze and the scanner might not be set up perfectly horizontally. For the purpose of aligning the scans it’s easiest to focus on the stems. Alignment doesn’t have to be perfect – the ICP tool will finish the job for us. How does knowing the pitfalls of data processing affect your decision about when to scan (e.g. season/ time of day)?
 
-![Figure 9. Translate](Prac10/cc_translate3.png)
+**6. Import and align Scan 27.**
+  * Make sure you select the point cloud you want to move/ rotate in the top left panel
+  * Get yourself a cuppa if you feel frustration levels are rising
 
-12. Now we can use the right-mouse click to drag the selected cloud (Boab_3) in any direction we like - in the screenshot below you will see I have shifted it over to the right.
+![Figure 9.](Prac10/Aligned2.png)
 
-![Figure 10. Translate](Prac10/cc_translate4.png)
+Now that all three point clouds are in place we can correct minor offsets using the ICP tool.
 
-13. Now we can see the two scans clearly, and we can see that Boab_3 needs to be rotated clockwise to align better with Boab_1. Using the left mouse button click and drag the Boab_3 cloud to rotate it by about 30 degrees in teh clockwise direction.
+**7. Fine register first point cloud.**
+  * Select Scan 26 and Scan 27
+  * Open the Clouds registration tool *(Tools -> Registration -> Fine registration (ICP))*
+  * Make sure Scan 26 is assigned as reference - click swap if necessary
+  * Change final overlap to 30%
+  * Click ok
+  * Reset colour ramp if necessary
+  * Inspect the alignment - notice how sharp the edges look now
 
-![Figure 11. Translate](Prac10/cc_translate5.png)
+![Figure 10.](Prac10/Registration.png)
 
-14. Now that the rotation looks better, we can use the right-mouse button to pull the whole cloud over to the left again and position it in better alignment with Boab_1.
+The 30% overlap is an estimate you need to make when registering point clouds. How do you think changing the distance between scan points would affect this setting?
 
-15. That looks much better, so now we can click the green tick to accept these changes to the orientation matrix of Boab_3.
+**8. Fine register second point cloud.**
+  * Select Scan 26 and Scan 17
+  * Repeat the process (make sure final overlap is at 30%)
+  * Inspect the result - I'm sure by now you'll appreciate the neat alignment
 
-16. If we zoom in, we can now see the two separate scan locations, they are no longer on top of each other but are very nearly in the correct position.
+![Figure 11.](Prac10/Registered.png)
 
-![Figure 11. Translate](Prac10/cc_translated2.png)
+Notice along the edges of the point cloud how points become more sparse and large patches are blank. How much area a single scan will cover depends not only on the scanner range, but also occlusion effect of nearby objects. To account for occlusion, scans in this plot have been placed at a 25 m distance. How do you think your sampling strategy would differ in an open grassland compared to this savanna woodland?
 
-17. However if we examine some straight lines for example, it is still clear that some minor offset is present.
+![Figure 12.](Prac10/Edge.png)
 
-![Figure 12. Translate](Prac10/cc_translated.png)
+Along with range and occlusion I have also mentioned point density as variable to be considered. The data we are working with has been subsampled to 1 point cm<sup>-2</sup>. As the entire plot is comprised of 25 scans I chose this point density as a compromise between computing power and data quality. So let's explore how further subsampling will affect the quality of your data and why point density is an important aspect to consider.
 
-18. We will correct this in Part 3 using the ICP algorithm
+**9. Reduce point density.**
+   * Select your favourite point cloud
+   * Open the subsampling tool *(Edit -> Subsample)*
+   * In min. space between points enter 0.1000
+   * Click OK
+   * Inspect the result
+
+![Figure 13.](Prac10/Subsampling.png)
+
+You have just decreased point density to one point 10 cm<sup>-2</sup>. You can switch the individual layers on and off to visually inspect the effect of reducing point density. If you compare the properties in the bottom left panel you will see that points have been reduced to a fraction of the original. If you save the subsampled point cloud you will see that file size has also decreased significantly. If your GPU has struggled displaying the data thus far you might find it easier to navigate the subsampled point cloud.
+
+![Figure 14.](Prac10/Subsampled.png)
+
+How do you think point density affects the computing power required to deal with the data?
+
+Would the new subsampled point cloud still be useful for measuring DBH?
+
+If DBH wasn't your primary outcome but tree height or stem density - which point density would you choose?
+
 
 
 ### Thank you
 
-I hope you found that useful. A recorded video of this tutorial can be found on my YouTube Channel's [Introduction to Remote Sensing of the Environment Playlist](https://www.youtube.com/playlist?list=PLf6lu3bePWHDi3-lrSqiyInMGQXM34TSV) and on my lab website [GEARS](https://www.gears-lab.com).
+I hope you found this Prac useful.
 
-#### Kind regards, Shaun R Levick
-------
+#### Cheers, Linda Luck
